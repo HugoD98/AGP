@@ -3,18 +3,18 @@ package organisation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import environment.SiteTouristique;
+import environment.TouristicSite;
 import environment.Transport;
 
 public class Excursion {
 
-	int duree;
-	HashMap<String, SiteTouristique> sitesTouristiques;
+	int duration;
+	HashMap<String, TouristicSite> touristicSites;
 	ArrayList<Transport> transports;
 	
-	public Excursion(int duree) {
-		this.duree = 0;
-		this.sitesTouristiques = new HashMap<String, SiteTouristique>();
+	public Excursion(int duration) {
+		this.duration = 0;
+		this.touristicSites = new HashMap<String, TouristicSite>();
 		this.transports = new ArrayList<Transport>();
 	}
 	

@@ -2,37 +2,39 @@ package environment;
 
 public class Hotel {
 
-	String gamme;
-	String plage;
-	int prix;
+	int star;
+	String beach;
+	int price;
 	
-	public Hotel(String gamme, String plage, int prix) {
-		this.gamme = gamme;
-		this.plage = plage;
-		this.prix = prix;
+	public Hotel(int star, String beach, int price) {
+		this.star = star;
+		this.beach = beach;
+		this.price = price;
 	}
 
-	public String getGamme() {
-		return gamme;
+	public int getStar() {
+		return star;
 	}
 
-	public void setGamme(String gamme) {
-		this.gamme = gamme;
+	public void setStar(int star) {
+		this.star = star;
 	}
 
-	public String getPlage() {
-		return plage;
+	public String getBeach() {
+		return beach;
 	}
 
-	public void setPlage(String plage) {
-		this.plage = plage;
+	public void setBeach(String beach) {
+		this.beach = beach;
 	}
 
-	public int getPrix() {
-		return prix;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setPrix(int prix) {
-		this.prix = prix;
+	public void setPrice(int price) {
+		this.price = price;
 	}
+
+	
 }

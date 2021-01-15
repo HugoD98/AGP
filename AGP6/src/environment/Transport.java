@@ -2,16 +2,16 @@ package environment;
 
 public abstract class Transport {
 	
-	int prix;
-	int vitesse;
+	int price;
+	int speed;
 	
 	public Transport() {
 		
 	}
 	
-	public Transport(int prix, int vitesse) {
+	public Transport(int price, int speed) {
 		
-		this.prix = prix;
-		this.vitesse = vitesse;
+		this.price = price;
+		this.speed = speed;
 	}
 }
