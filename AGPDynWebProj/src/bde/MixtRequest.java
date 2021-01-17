@@ -49,6 +49,7 @@ public class MixtRequest {
 				while(requeteTextuelle.next()) {
 					
 					resText = requeteTextuelle.get();
+					//System.out.println(resText+" resultat textuel");
 					if (name.contentEquals(resText)) {
 						TouristicSite ts = new TouristicSite(name, type, price, visitDuration);
 						results.add(ts);
@@ -60,11 +61,14 @@ public class MixtRequest {
 	
 	public Boolean next() {
 		
+		//System.out.println(index);
+		
 		if (results.size() ==0)
 			return false;
 		else if(index < 0) {
 			index = 0;
 			current = results.get(index);
+			index ++;
 			return true;
 		} else if(index >= results.size()) {
 			index = -1;

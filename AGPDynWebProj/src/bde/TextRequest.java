@@ -13,8 +13,8 @@ import org.apache.lucene.store.*;
 
 public class TextRequest {
 	
-	private String indexLocation ="tmp/index";
-	private String fileLocation ="R";
+	private String indexLocation ="src/tmp/index";
+	private String fileLocation ="src/R";
 	private ArrayList<String>  results;
 	private String current;
 	private int index = -1;
@@ -29,15 +29,14 @@ public class TextRequest {
 		IndexWriterConfig config = new IndexWriterConfig(analyseur);
 		
 	    IndexWriter w = new IndexWriter(index, config);
+	    w.deleteAll();
 	    
 	    // Pour indexer les fichiers
 	    
 	    File repertoire = new File(fileLocation+"/");
 	    
-	    System.out.println(repertoire);
-	    
         String list[] = repertoire.list();      
- 
+        
         if (list != null) {         
             for(String s : list) {
             	//System.out.println(s);
@@ -50,6 +49,7 @@ public class TextRequest {
         } else {
             System.err.println("Nom de repertoire invalide");
         }
+        
         w.close();
 	}
 	
@@ -75,10 +75,12 @@ public class TextRequest {
 	    for(int i=0; i<results.scoreDocs.length; i++) {
 	    	int docId = results.scoreDocs[i].doc;
 	    	Document d = searcher.doc(docId);
-	    	if(!this.results.contains(d.get("name")))
-	    		this.results.add(d.get("name").split(".")[0]);
+	    	if(!this.results.contains(d.get("name").split("\\.")[0])) {
+	    		this.results.add(d.get("name").split("\\.")[0]);
+	    	}
+	    		
 	    	
-	    	//System.out.println(d.get("name") + ": score " + resultats.scoreDocs[i].score);
+	    	//System.out.println(d.get("name") + ": score " + results.scoreDocs[i].score);
 	    }
 	        
 	    ireader.close();
@@ -103,6 +105,7 @@ public class TextRequest {
 		else if(index < 0) {
 			index = 0;
 			current = results.get(index);
+			index++;
 			return true;
 		} else if(index >= results.size()) {
 			index = -1;
