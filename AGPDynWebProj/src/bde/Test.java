@@ -3,20 +3,19 @@ package bde;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import environment.TouristicSite;
+
 public class Test {
 
 	
 	public static void main(String args[]) throws Exception {
-		/*
-		SQLRequest req = new SQLRequest();
 		
-		req.init("select * from TouristicSite where type = 'Leisure';");
+		Request req = new Request();
+		
+		req.init("select * from TouristicSite with nautique");
 		
 		while(req.next()) {
-			
-			ResultSet res = req.get();
-			System.out.println(res.getString("name"));
-			
-		} */
+			System.out.println( ((TouristicSite)(req.get())).getName());
+		}
 	}
 }

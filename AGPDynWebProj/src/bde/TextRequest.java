@@ -32,7 +32,10 @@ public class TextRequest {
 	    
 	    // Pour indexer les fichiers
 	    
-	    File repertoire = new File(fileLocation);
+	    File repertoire = new File(fileLocation+"/");
+	    
+	    System.out.println(repertoire);
+	    
         String list[] = repertoire.list();      
  
         if (list != null) {         
@@ -95,7 +98,9 @@ public class TextRequest {
 	
 	public Boolean next(){
 		
-		if(index < 0) {
+		if(results.size()==0)
+			return false;
+		else if(index < 0) {
 			index = 0;
 			current = results.get(index);
 			return true;

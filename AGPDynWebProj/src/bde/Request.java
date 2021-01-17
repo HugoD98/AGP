@@ -1,98 +1,48 @@
 package bde;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 import environment.TouristicSite;
 
 public class Request {
-
-	SQLRequest requeteSQL;
-	TextRequest requeteTextuelle;
-	ArrayList<TouristicSite> results;
-	TouristicSite current;
-	int index = -1;
 	
-	public Request(String requete) {
-		
-		requeteSQL = new SQLRequest();
-		requeteTextuelle = new TextRequest();
-		results = new ArrayList<>();
-	}
+	MixtRequest mixtReq;
+	SQLRequest req;
+	Boolean mixt = false;
 	
-	public void init(String requete) throws Exception {
+	public void init(String request) throws Exception {
 		
-		String text;
-		String sqlText;
-		ResultSet res;
-		
-		if(requete.contains("with")) {
+		if(request.contains("with")) {
 			
-			String[] word = requete.split("with", 2);
-			text = word[1];
-			sqlText = word[0];
+			mixt = true;
+			mixtReq = new MixtRequest();
+			mixtReq.init(request);
+		}
+		else {
 			
-			requeteSQL.init(sqlText);
-			requeteTextuelle.init(text);
-			
-			String resText;
-			
-			while(requeteSQL.next()) {
-				
-				res = requeteSQL.get();
-				
-				String name = res.getNString("name");
-				String type = res.getNString("type");
-				int price = res.getInt("price");
-				int visitDuration = res.getInt("visitDuration");
-				
-				while(requeteTextuelle.next()) {
-					
-					resText = requeteTextuelle.get();
-					if (name.contentEquals(resText)) {
-						TouristicSite ts = new TouristicSite(name, type, price, visitDuration);
-						results.add(ts);
-					}
-				}
-			}
-					
-		} else {
-			
-			requeteSQL.init(requete);
-			
-			while(requeteSQL.next()) {
-				
-				res = requeteSQL.get();
-				String name = res.getNString("name");
-				String type = res.getNString("type");
-				int price = res.getInt("price");
-				int visitDuration = res.getInt("visitDuration");
-				
-				TouristicSite ts = new TouristicSite(name, type, price, visitDuration);
-				results.add(ts);
-			}
+			req = new SQLRequest();
+			req.init(request);
 		}
 	}
 	
-	public Boolean next() {
+	public Boolean next() throws Exception {
 		
-		if(index < 0) {
-			index = 0;
-			current = results.get(index);
-			return true;
-		} else if(index >= results.size()) {
-			index = -1;
-			return false;
-		} else {
-			current = results.get(index);
-			index = index+1;
-		}		
-		return true;
+		if(mixt) {
+			if(mixtReq.next())
+				return true;
+		} else if(!mixt) {
+			if(req.next())
+				return true;
+		}
+		return false;
 	}
 	
-	public TouristicSite get() {
+	public Object get(){
 		
-		return current;
+		if(mixt)
+			return mixtReq.get();
+		else
+			return req.get();
 	}
 	
 }
