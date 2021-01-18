@@ -1,26 +1,23 @@
 package bde;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class BaseFunction {
 
-	private Connection connection;
-	
-	private void prepareConnection() {
-		if (connection == null) {
-			try {
-				connection = DriverManager.getConnection(BdeEntry.url, BdeEntry.user, BdeEntry.password);
-			} catch (Exception e) {
-				System.err.println("Connection failed : " + e.getMessage());
-			}
-		}
+	public static void specifiyTextualLocation(String tableName, String keyName, String fileLocation) {
+		
+		BdeEntry.fileLocation = fileLocation;
+		BdeEntry.T = tableName;
+		BdeEntry.c = keyName;
 	}
 	
-	public void addText(String text, String name, String table) {
+	public static void addText(String t, String c) throws Exception {
 		
-		
+	    PrintWriter writer = new PrintWriter(BdeEntry.fileLocation+"/"+c+".txt", "UTF-8");
+	    writer.println(t);
+	    writer.close();
 	}
 	
 }

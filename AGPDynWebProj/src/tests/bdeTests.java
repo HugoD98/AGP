@@ -1,15 +1,37 @@
 package tests;
 
+import bde.BaseFunction;
+import bde.BdeEntry;
 import bde.Request;
 import bde.SQLRequest;
 import bde.TextRequest;
 import environment.TouristicSite;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.File;
+
 import org.junit.Test;
 
 public class bdeTests {
 
+	@Test
+	public void testAddText() throws Exception {
+		
+		BaseFunction.specifiyTextualLocation("TouristicSite", "name", "src/RTest");
+		
+		String text = "Bonjour a tous";
+		String c = "PingPong";
+		BaseFunction.addText(text, c);
+		
+		File repertoire = new File(BdeEntry.fileLocation+"/");
+	    
+        String list[] = repertoire.list(); 
+        
+        assertEquals("PingPong.txt", list[0]);
+		
+	}
+	
 	@Test
 	public void testTextRequest() throws Exception {
 		
