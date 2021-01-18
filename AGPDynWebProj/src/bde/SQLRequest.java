@@ -13,12 +13,6 @@ import environment.Hotel;
 
 public class SQLRequest {
 	
-	private static String host = "localhost:8889";
-	private static String base = "BaliVoyage";
-	private static String user = "root";
-	private static String password = "root";
-	private static String url = "jdbc:mysql://" + host + "/" + base;
-	
 	private ResultSet results;
 
 	private Connection connection;
@@ -30,7 +24,7 @@ public class SQLRequest {
 	private void prepareConnection() {
 		if (connection == null) {
 			try {
-				connection = DriverManager.getConnection(url, user, password);
+				connection = DriverManager.getConnection(BdeEntry.url, BdeEntry.user, BdeEntry.password);
 			} catch (Exception e) {
 				System.err.println("Connection failed : " + e.getMessage());
 			}
@@ -63,8 +57,23 @@ public class SQLRequest {
 			return false;
 	}
 	
-	public ResultSet get() {
+	public String getString(String label) throws Exception {
 		
-		return results;
+		return results.getNString(label);
+	}
+	
+	public ResultSetMetaData getMetaData() throws Exception {
+		
+		return results.getMetaData();
+	}
+	
+	public int getInt(String label) throws Exception {
+		
+		return results.getInt(label);
+	}
+	
+	public Object getObject(int columnIndex) throws Exception {
+		
+		return results.getObject(columnIndex);
 	}
 }

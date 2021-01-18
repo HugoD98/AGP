@@ -13,8 +13,6 @@ import org.apache.lucene.store.*;
 
 public class TextRequest {
 	
-	private String indexLocation ="src/tmp/index";
-	private String fileLocation ="src/R";
 	private ArrayList<String>  results;
 	private String current;
 	private int index = -1;
@@ -23,7 +21,7 @@ public class TextRequest {
 		
 		Analyzer analyseur = new StandardAnalyzer();
 		
-		Directory index = FSDirectory.open(Paths.get(indexLocation));
+		Directory index = FSDirectory.open(Paths.get(BdeEntry.indexLocation));
 		
 		//System.out.println(index);
 		IndexWriterConfig config = new IndexWriterConfig(analyseur);
@@ -33,14 +31,14 @@ public class TextRequest {
 	    
 	    // Pour indexer les fichiers
 	    
-	    File repertoire = new File(fileLocation+"/");
+	    File repertoire = new File(BdeEntry.fileLocation+"/");
 	    
         String list[] = repertoire.list();      
         
         if (list != null) {         
             for(String s : list) {
             	//System.out.println(s);
-            	File f = new File(fileLocation+"/"+s);
+            	File f = new File(BdeEntry.fileLocation+"/"+s);
            		Document doc = new Document();
            		doc.add(new Field("name", f.getName(), TextField.TYPE_STORED));
            		doc.add(new Field("content", new FileReader(f), TextField.TYPE_NOT_STORED));
@@ -57,7 +55,7 @@ public class TextRequest {
 		
 		int MAX_RESULTS = 100;
 		
-		Directory index = FSDirectory.open(Paths.get(indexLocation));
+		Directory index = FSDirectory.open(Paths.get(BdeEntry.indexLocation));
 		
 		//System.out.println(index);
 		

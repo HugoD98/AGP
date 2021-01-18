@@ -28,7 +28,7 @@ public class ReservationTest {
 	@Test
 	public void test() {
 		assertTrue(0==0);
-
+		
 	}
 
 }

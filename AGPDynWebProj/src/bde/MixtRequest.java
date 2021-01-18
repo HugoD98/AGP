@@ -1,30 +1,30 @@
 package bde;
 
-import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-
-import environment.TouristicSite;
 
 public class MixtRequest {
 
 	SQLRequest requeteSQL;
 	TextRequest requeteTextuelle;
-	ArrayList<TouristicSite> results;
-	TouristicSite current;
+	ArrayList<String> labels;
+	ArrayList<ArrayList<Object>> results;
+	ArrayList<Object> current;
 	int index = -1;
 	
 	public MixtRequest() {
 		
 		requeteSQL = new SQLRequest();
 		requeteTextuelle = new TextRequest();
-		results = new ArrayList<>();
+		results = new ArrayList<ArrayList<Object>>();
+		current = new ArrayList<Object>();
+		labels = new ArrayList<String>();
 	}
 	
 	public void init(String requete) throws Exception {
 		
 		String text;
 		String sqlText;
-		ResultSet res;
 		
 		if(requete.contains("with")) {
 			
@@ -37,24 +37,36 @@ public class MixtRequest {
 			
 			String resText;
 			
+			ResultSetMetaData meta = requeteSQL.getMetaData();
+			
+			//System.out.println(meta.getColumnCount());
+			
+			for(int i=1; i<=meta.getColumnCount(); i++) {
+				labels.add(meta.getColumnLabel(i));
+			}
+			
 			while(requeteSQL.next()) {
 				
-				res = requeteSQL.get();
-				
-				String name = res.getNString("name");
-				String type = res.getNString("type");
-				int price = res.getInt("price");
-				int visitDuration = res.getInt("visitDuration");
+				String key = requeteSQL.getString(BdeEntry.c);
+				ArrayList<Object> res = new ArrayList<Object>();
 				
 				while(requeteTextuelle.next()) {
 					
 					resText = requeteTextuelle.get();
-					//System.out.println(resText+" resultat textuel");
-					if (name.contentEquals(resText)) {
-						TouristicSite ts = new TouristicSite(name, type, price, visitDuration);
-						results.add(ts);
+				
+					if (key.contentEquals(resText)) {
+						
+						
+						for(int i=1; i<=meta.getColumnCount(); i++) {
+							res.add(requeteSQL.getObject(i));			
+						}
 					}
 				}
+				
+				//System.out.println(res.size());
+				
+				if(res.size() > 0)
+					results.add(res);
 			}
 		}
 	}
@@ -80,9 +92,16 @@ public class MixtRequest {
 		return true;
 	}
 	
-	public TouristicSite get() {
+	public String getString(String label) {
 		
-		return current;
+		int column = labels.indexOf(label);
+		return (String)current.get(column);
+	}
+	
+	public int getInt(String label) {
+		
+		int column = labels.indexOf(label);
+		return (int)current.get(column);
 	}
 	
 }

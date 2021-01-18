@@ -1,9 +1,5 @@
 package bde;
 
-import java.sql.ResultSet;
-
-import environment.TouristicSite;
-
 public class Request {
 	
 	MixtRequest mixtReq;
@@ -37,12 +33,20 @@ public class Request {
 		return false;
 	}
 	
-	public Object get(){
+	public String getString(String label) throws Exception{
 		
 		if(mixt)
-			return mixtReq.get();
+			return mixtReq.getString(label);
 		else
-			return req.get();
+			return req.getString(label);
+	}
+	
+	public int getInt(String label) throws Exception{
+		
+		if(mixt)
+			return mixtReq.getInt(label);
+		else
+			return req.getInt(label);
 	}
 	
 }
