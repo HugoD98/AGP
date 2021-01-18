@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Bali booking</title>
+</h:head>
+<h:body>
+	<h2>Voici nos séjours :</h2>
+
+	<fieldset>
+		<legend>
+			<strong>Critère actuel</strong>
+		</legend>		
+	
+		Budget : #{entryBean.budget} <br /> 
+		Durée : #{entryBean.duration} <br />
+		Confort : #{entryBean.comfort} <br /> 
+		Intensité : #{entryBean.activityIntensity} <br />
+		Nombre de personnes : #{entryBean.numberOfPerson} <br />
+		
+
+	</fieldset>
+	<h:panelGroup>
+		<a href="index.jsf">Modifier les critère</a>
+	</h:panelGroup>
+	<p>
+		<strong>Voici les séjours qui vous sont proposés</strong>
+	</p>
+	<h:form>
+			<h:dataTable var="activities" value="#{resultBean.activities1}" border="1" id="scoreTable">
+				<f:facet name="caption">Séjour 1</f:facet>
+				<h:column>
+					<f:facet name="header">Nom du site</f:facet>
+                                        #{activities.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Type d'activitité</f:facet>
+                                        #{activities.type}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prix </f:facet>
+                                        #{activities.price}€
+				</h:column>
+				<h:column>
+					<f:facet name="header">Durée </f:facet>
+                                        #{activities.visitDuration} heures
+				</h:column>
+			</h:dataTable>
+	</h:form>
+	<h:form>
+			<h:dataTable var="activities" value="#{resultBean.activities2}" border="1" id="scoreTable">
+				<f:facet name="caption">Séjour 2</f:facet>
+				<h:column>
+					<f:facet name="header">Nom du site</f:facet>
+                                        #{activities.name}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Type d'activitité</f:facet>
+                                        #{activities.type}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Prix </f:facet>
+                                        #{activities.price}€
+				</h:column>
+				<h:column>
+					<f:facet name="header">Durée </f:facet>
+                                        #{activities.visitDuration} heures
+				</h:column>
+			</h:dataTable>
+	</h:form>
+</h:body>
+</html>

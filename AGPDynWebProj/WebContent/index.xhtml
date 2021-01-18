@@ -1,25 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Bali booking </title>
+	<title>Bali booking</title>
 </h:head>
 <h:body>
 
 	<h2>Quels sont les critère pour votre réservation ?</h2>
-	<!-- >h:panelGroup>
-		<ul>
-			<li><a href="list.jsf">View all students</a></li>
-		</ul>
-	</h:panelGroup-->
 	<fieldset>
 		<legend>Liste des critère</legend>
 		<h:form>
             Budget(pour 1personne semaine)  (min 500  - max 8000 ) : 
                 <h:inputText value="#{entryBean.budget}" />
 			<br />
-			durée(en semaine)  (1 à 4) : 
+			Durée(en semaine)  (1 à 4) : 
                 <h:inputText value="#{entryBean.duration}" />
 			<br />
             Confort(1 à 5): 
@@ -31,7 +28,7 @@
 			Nombre de personne(s) (min 1) ): 
                 <h:inputText value="#{entryBean.numberOfPerson}" />
 			<br />
-			<h:commandButton value="valider" action="#{entryBean.verify}" href="" />
+			<h:commandButton value="Valider" action="#{entryBean.startStays}" />
 		</h:form>
 	</fieldset>
 
