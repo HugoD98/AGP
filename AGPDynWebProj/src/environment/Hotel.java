@@ -1,15 +1,19 @@
 package environment;
 
+import java.awt.Point;
+
 public class Hotel {
 
 	int star;
 	String beach;
 	int price;
+	Point location;
 	
-	public Hotel(int star, String beach, int price) {
+	public Hotel(int star, String beach, int price, int x, int y) {
 		this.star = star;
 		this.beach = beach;
 		this.price = price;
+		this.location = new Point(x, y);
 	}
 
 	public int getStar() {

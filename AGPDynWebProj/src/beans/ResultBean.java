@@ -31,6 +31,7 @@ public class ResultBean {
 
 	
 	public ResultBean() {
+		/*
 		TouristicSite t1 = new TouristicSite("temple A", "culturel", 25, 2);
 		TouristicSite t2 = new TouristicSite("temple B", "culturel", 25, 3);
 		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);
@@ -41,10 +42,10 @@ public class ResultBean {
 		
 		TouristicSite t4 = new TouristicSite("temple A", "culturel", 25, 2);
 		TouristicSite t5 = new TouristicSite("balade A", "sportive", 5, 2);
-		TouristicSite t6 = new TouristicSite("musée A", "culturel", 100, 3);
+		TouristicSite t6 = new TouristicSite("musï¿½e A", "culturel", 100, 3);
 		activities2.add(t4);
 		activities2.add(t5);
-		activities2.add(t6);
+		activities2.add(t6); */
 			
 	}
 

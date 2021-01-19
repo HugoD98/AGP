@@ -1,23 +1,37 @@
 package environment;
 
+import java.awt.Point;
+
 public class TouristicSite {
 	
 	private String name;
 	private String type;
 	private int price;
 	private int visitDuration;
+	private Point location;
 
 	public TouristicSite() {
 		
 	}
 
-	public TouristicSite(String name, String type, int price, int visitDuration) {
+	public TouristicSite(String name, String type, int price, int visitDuration, int x, int y) {
 		this.name = name;
 		this.setType(type);
 		this.price = price;
 		this.visitDuration = visitDuration;
+		this.location = new Point(x, y);
 	}
 	
+	
+	
+	public Point getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+
 	public String getName() {
 		return name;
 	}
