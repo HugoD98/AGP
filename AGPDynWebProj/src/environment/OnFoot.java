@@ -8,5 +8,6 @@ public class OnFoot extends Transport{
 		this.distance = distance;
 		this.comfort = 100 - (5*distance);
 		this.price = this.pricePerKm*distance;
+		this.name = "A pieds";
 	}
 }

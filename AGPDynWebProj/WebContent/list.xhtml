@@ -3,73 +3,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Bali booking</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 </h:head>
 <h:body>
-	<h2>Voici nos séjours :</h2>
+	<h1 style="text-align:center;">Nos reservations</h1>
 
 	<fieldset>
 		<legend>
 			<strong>Critère actuel</strong>
 		</legend>		
-	
 		Budget : #{entryBean.budget} <br /> 
 		Durée : #{entryBean.duration} <br />
 		Confort : #{entryBean.comfort} <br /> 
 		Intensité : #{entryBean.activityIntensity} <br />
 		Nombre de personnes : #{entryBean.numberOfPerson} <br />
-		
 
 	</fieldset>
 	<h:panelGroup>
-		<a href="index.jsf">Modifier les critère</a>
+		<a href="index.jsf">Modifier les critères</a>
 	</h:panelGroup>
-	<p>
-		<strong>Voici les séjours qui vous sont proposés</strong>
-	</p>
-	<h:form>
-			<h:dataTable var="activities" value="#{resultBean.activities1}" border="1" id="scoreTable">
-				<f:facet name="caption">Séjour 1</f:facet>
-				<h:column>
-					<f:facet name="header">Nom du site</f:facet>
-                                        #{activities.name}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Type d'activitité</f:facet>
-                                        #{activities.type}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Prix </f:facet>
-                                        #{activities.price}€
-				</h:column>
-				<h:column>
-					<f:facet name="header">Durée </f:facet>
-                                        #{activities.visitDuration} heures
-				</h:column>
-			</h:dataTable>
+	
+
+	
+	<h2>Voici les séjours qui vous sont proposés</h2>
+	<h:form id="tableForm" >
+	
+		<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
+	
+			<h4>Proposition n°#{stayLoop.index+1} d'une durée de #{stay.duration} semaine(e) au prix de #{stay.price}€</h4>
+			<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">
+						
+				<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
+					<f:facet name="caption">Activité jour #{excursionLoop.index+1} </f:facet>
+					<h:column id="row">
+						<f:facet name="header">Nom du site</f:facet>
+							${site.name}
+							
+							<p:commandButton style="font-size: 0.8em;float:right;margin-left:10px" update=":tableForm:siteDetail" oncomplete="PF('description').show('#{component.clientId}')" icon="pi pi-search" title="View">
+               					<f:setPropertyActionListener value="#{resultBean.showDescription(site.name)}" target="#{resultBean.description}" />
+            				</p:commandButton>
+    						
+							
+					</h:column>
+					<h:column>
+						<f:facet name="header">Type d'activitité</f:facet>
+							${site.type}   
+					</h:column>
+					<h:column>
+						<f:facet name="header">Durée </f:facet>
+							${site.visitDuration} heures 
+					</h:column>
+					<h:column>
+						<f:facet name="header">Transport </f:facet>
+		                    ${excursion.transports[excursion.touristicSites.indexOf(site)].name}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Prix (activité + transport)</f:facet>
+		                    ${site.price} + ${excursion.transports[excursion.touristicSites.indexOf(site)].price} =  ${site.price + excursion.transports[excursion.touristicSites.indexOf(site)].price} €
+					</h:column>
+				</h:dataTable>
+			</ui:repeat>
+		</ui:repeat>
+		<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
+			        <p:outputPanel id="siteDetail" style="text-align:center;">
+						${resultBean.description}
+			            
+			        </p:outputPanel>
+		</p:overlayPanel>
 	</h:form>
-	<h:form>
-			<h:dataTable var="activities" value="#{resultBean.activities2}" border="1" id="scoreTable">
-				<f:facet name="caption">Séjour 2</f:facet>
-				<h:column>
-					<f:facet name="header">Nom du site</f:facet>
-                                        #{activities.name}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Type d'activitité</f:facet>
-                                        #{activities.type}
-				</h:column>
-				<h:column>
-					<f:facet name="header">Prix </f:facet>
-                                        #{activities.price}€
-				</h:column>
-				<h:column>
-					<f:facet name="header">Durée </f:facet>
-                                        #{activities.visitDuration} heures
-				</h:column>
-			</h:dataTable>
-	</h:form>
+	
+	
+	
 </h:body>
 </html>

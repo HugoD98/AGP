@@ -19,7 +19,8 @@ public class EntryBean {
 		// ici on peut faire un appel de notre main avec tout nos params
 		// Main main = new Main();
 		// main.start(budget,duration,comfort,activityIntensity,numberOfPerson);
-		
+
+
 		return "list";
 	}
 

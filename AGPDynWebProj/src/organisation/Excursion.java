@@ -22,6 +22,19 @@ public class Excursion {
 		this.transports = new ArrayList<Transport>();
 	}
 	
+	
+	
+	public Excursion(int duration, int price, int comfort, ArrayList<TouristicSite> touristicSites, ArrayList<Transport> transports) {
+		
+		this.duration = duration;
+		this.price = price;
+		this.comfort = comfort;
+		this.touristicSites = touristicSites;
+		this.transports = transports;
+	}
+
+
+
 	public int getDuration() {
 		return duration;
 	}
