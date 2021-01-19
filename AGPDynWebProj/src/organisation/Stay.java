@@ -5,17 +5,50 @@ import environment.Hotel;
 
 public class Stay {
 
-	int price;
-	int duration;
+	private int price;
+	private int duration;
 	
-	ArrayList<Excursion> excursions;
-	ArrayList<Hotel> hotel;
+	private ArrayList<Excursion> excursions;
+	private ArrayList<Hotel> hotel;
 	
-	public Stay(int price, int duration, ArrayList<Excursion> excursions, Hotel hotel) {
+	public Stay(int price, int duration, ArrayList<Excursion> excursions, ArrayList<Hotel> hotel) {
 		
 		this.price = price;
 		this.duration = duration;
-		this.excursions = new ArrayList<Excursion>();
-		this.hotel = new ArrayList<Hotel>();
+		this.excursions = excursions;
+		this.hotel = hotel;
 	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public ArrayList<Excursion> getExcursions() {
+		return excursions;
+	}
+
+	public void setExcursions(ArrayList<Excursion> excursions) {
+		this.excursions = excursions;
+	}
+
+	public ArrayList<Hotel> getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(ArrayList<Hotel> hotel) {
+		this.hotel = hotel;
+	}
+	
 }

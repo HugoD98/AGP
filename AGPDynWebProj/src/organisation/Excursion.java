@@ -8,14 +8,33 @@ import environment.Transport;
 
 public class Excursion {
 
-	int duration;
-	HashMap<String, TouristicSite> touristicSites;
-	ArrayList<Transport> transports;
+	ArrayList<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
+	ArrayList<Transport> transports = new ArrayList<Transport>();	
 	
-	public Excursion(int duration) {
-		this.duration = 0;
-		this.touristicSites = new HashMap<String, TouristicSite>();
-		this.transports = new ArrayList<Transport>();
+	public Excursion( ArrayList<TouristicSite> touristicSites, ArrayList<Transport> transports) {
+		this.touristicSites = touristicSites;
+		this.transports = transports;
 	}
+
+	public ArrayList<TouristicSite> getTouristicSites() {
+		return touristicSites;
+	}
+
+
+	public void setTouristicSites(ArrayList<TouristicSite>  touristicSites) {
+		this.touristicSites = touristicSites;
+	}
+
+
+	public ArrayList<Transport> getTransports() {
+		return transports;
+	}
+
+
+	public void setTransports(ArrayList<Transport> transports) {
+		this.transports = transports;
+	}
+	
+	
 	
 }
