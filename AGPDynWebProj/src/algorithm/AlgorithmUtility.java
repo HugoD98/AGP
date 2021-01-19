@@ -1,8 +1,14 @@
 package algorithm;
 
+import static org.junit.Assert.assertEquals;
+
+import java.awt.Point;
 import java.util.ArrayList;
 
+import bde.Request;
+import bde.SQLRequest;
 import environment.Bus;
+import environment.Hotel;
 import environment.OnFoot;
 import environment.TouristicSite;
 import environment.Transport;
@@ -63,4 +69,55 @@ public class AlgorithmUtility {
 		return n<=time;
 		
 	}
+	
+	public static ArrayList<TouristicSite> getSites(String filter) throws Exception{
+		
+		ArrayList<TouristicSite> sites = new ArrayList<>();
+		
+		Request req = new Request();
+		
+		req.init("SELECT * from TouristicSite with "+filter);
+		
+		while(req.next()) {
+			
+			String name = req.getString("name");
+			String type = req.getString("type");
+			int price = req.getInt("price");
+			int visitDuration = req.getInt("visitDuration");
+			int x = req.getInt("x");
+			int y = req.getInt("y");
+			
+			TouristicSite s = new TouristicSite(name, type, price, visitDuration, x, y);
+			sites.add(s);
+		}
+		
+		return sites;
+	}
+	
+	public static ArrayList<Hotel> getHotels() throws Exception{
+		
+		ArrayList<Hotel> hotels = new ArrayList<>();
+		
+		SQLRequest sql = new SQLRequest();
+		
+		sql.init("SELECT * from Hotel");
+		
+		while(sql.next()) {
+			
+			int star = sql.getInt("star");
+			String beach = sql.getString("beach");
+			int price = sql.getInt("price");
+			int x = sql.getInt("x");
+			int y = sql.getInt("y");
+			Hotel h = new Hotel(star, beach, price, x, y);
+			hotels.add(h);
+		}
+		
+		return hotels;
+	}
 }
+
+
+
+
+

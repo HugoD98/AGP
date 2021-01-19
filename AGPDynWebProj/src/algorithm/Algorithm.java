@@ -6,6 +6,7 @@ import environment.Hotel;
 import environment.TouristicSite;
 import environment.Transport;
 import organisation.Excursion;
+import organisation.Stay;
 
 public class Algorithm {
 	
@@ -20,13 +21,21 @@ public class Algorithm {
 	private ArrayList<Hotel> hotelsList;
 	private ArrayList<Hotel> hotels;
 	
-	public Algorithm() {
+	public Algorithm(String filter) throws Exception {
 		
 		program = new int[this.duration];
 		excursions = new ArrayList<>();
-		sites = new ArrayList<>();
-		hotels = new ArrayList<>();
+		sites = AlgorithmUtility.getSites(filter);
+		hotels = AlgorithmUtility.getHotels();
 		
+	}
+	
+	public Stay launch() {
+		
+		fillProgram();
+		fill();
+		Stay s = new Stay(duration, excursions, hotels);
+		return s;
 	}
 	
 	public void fillProgram() {
@@ -132,10 +141,6 @@ public class Algorithm {
 		excursion.actualizeComfort();
 		
 		return excursion;
-	}
-	
-	public void fillHotel() {
-				
 	}
 }
 

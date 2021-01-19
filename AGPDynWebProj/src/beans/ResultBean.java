@@ -83,8 +83,8 @@ public class ResultBean {
 		ArrayList<Excursion> excursions2 = new ArrayList<>();
 		excursions.add(new Excursion(12, 2, 3, touristicSiteMap2, transportList2));
 		
-		this.stays.add(new Stay( (int)(5000/2) , 1 , excursions , hotelList));
-		this.stays.add(new Stay( (int)(5000-200) , 3 ,  excursions2, hotelList));
+		this.stays.add(new Stay(1 , excursions , hotelList));
+		this.stays.add(new Stay(3 ,  excursions2, hotelList));
 	
 	}
 	
