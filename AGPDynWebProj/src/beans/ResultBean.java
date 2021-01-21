@@ -3,7 +3,10 @@ package beans;
 
 import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import environment.Boat;
@@ -18,9 +21,8 @@ import organisation.Stay;
 
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ResultBean {
-
 	private int budget; // budget per person for one week (500-8000) 
 	private int duration; // duration in week (1-4)
 	private int comfort; // in stars (1-5)
@@ -33,6 +35,9 @@ public class ResultBean {
 	private ArrayList<Stay> stays = new ArrayList<Stay>();
 	private ArrayList<TouristicSite> touristicSiteMap = new ArrayList<TouristicSite>();
 
+	
+	@ManagedProperty("#{entryBean}")
+	private EntryBean entryBean;
 	
 	public ResultBean() {
 		System.out.println("me voici au début de la création de la page web");
@@ -91,9 +96,11 @@ public class ResultBean {
 			
 		this.stays.add(new Stay( (int)(5000/2) , 1 , excusionList , hotelList));
 		this.stays.add(new Stay( (int)(5000-200) , 3 , excusionList , hotelList));
-	
+		
+		System.out.println(entryBean);
+
+
 	}
-	
 	
 	public String showDescription(String name){
 		System.out.println("pouette");
@@ -101,11 +108,20 @@ public class ResultBean {
 		
 		this.description = "Situé à l’Est de l’île, le Mont Agung est un volcan actif culminant à 3142 mètres d’altitude, soit le plus haut sommet de tout Bali. Il assure la fertilité des terres environnantes, c’est pourquoi il est très respecté par la population balinaise tout en étant craint du fait de ses éruptions spectaculaires qui peuvent parfois être meurtrières (près de 2000 victimes en 1963). L’ascension du Mont Agung est obligatoirement encadrée par un guide local et réservée aux sportifs expérimentés car plus longue et physique que celle du Mont Batur. L’expédition complète dure entre 5 et 12h selon votre rythme et le circuit choisi.";
 		
+		
+		
 		System.out.println(description);
+		this.description = this.description.replaceAll("à|â|ä","a");
+		this.description = this.description.replaceAll("é|è|ê|ë","e");
+		this.description = this.description.replaceAll("î|ï","i");
+		this.description = this.description.replaceAll("ö|ô","o");
+		this.description = this.description.replaceAll("ü|û","u");
+
 		return description;
 		
 	}
-
+	
+	
 	public int getBudget() {
 		return budget;
 	}
@@ -182,6 +198,16 @@ public class ResultBean {
 
 	public void setTest(String test) {
 		this.test = test;
+	}
+
+
+	public EntryBean getEntryBean() {
+		return entryBean;
+	}
+
+
+	public void setEntryBean(EntryBean entryBean) {
+		this.entryBean = entryBean;
 	}
 	
 	
