@@ -3,34 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	>
 <h:head>
 	<title>Bali booking</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	
 </h:head>
 <h:body>
 
-	<h2>Quels sont les critère pour votre réservation ?</h2>
-	<fieldset>
-		<legend>Liste des critère</legend>
+	<h1 style="text-align:center;">Sejour Bali</h1>
+	<div style="
+	float:right;
+	margin-right: 15px;
+    padding: 15px;
+    border: 0.1rem solid;
+    ">
+		<fieldset>
+		<legend>Recherche </legend>
 		<h:form>
-            Budget(pour 1personne semaine)  (min 500  - max 8000 ) : 
-                <h:inputText value="#{entryBean.budget}" />
-			<br />
-			Durée(en semaine)  (1 à 4) : 
-                <h:inputText value="#{entryBean.duration}" />
-			<br />
-            Confort(1 à 5): 
-                <h:inputText value="#{entryBean.comfort}" />
-			<br />
-			Intensité d'activité (1 à 3) ): 
-                <h:inputText value="#{entryBean.activityIntensity}" />
-			<br />
-			Nombre de personne(s) (min 1) ): 
-                <h:inputText value="#{entryBean.numberOfPerson}" />
-			<br />
-			<h:commandButton value="Valider" action="#{entryBean.startStays}" />
+			<h:inputTextarea id="textarea" value="#{entryBean.research}"  rows="1" cols="15" style="margin-right:15px;" />
+			<p:commandButton style="" icon="pi pi-search" action="#{entryBean.startResearch}" >
+			</p:commandButton>
+			
 		</h:form>
 	</fieldset>
+	</div>
+	
+	<fieldset>
+		<legend>Liste des criteres</legend>
+		<h:form>
+            Budget(pour 1personne par semaine)  (min 500  - max 8000 ) : 
+                <h:inputText style="margin-bottom:5px" value="#{entryBean.budget}" />
+			<br />
+			Duree(en semaine)  (1 à 4) : 
+                <h:inputText style="margin-bottom:5px" value="#{entryBean.duration}" />
+			<br />
+            Confort(1 à 5): 
+                <h:inputText style="margin-bottom:5px" value="#{entryBean.comfort}" />
+			<br />
+			Intensite d'activite (1 à 3) : 
+                <h:inputText style="margin-bottom:5px" value="#{entryBean.activityIntensity}" />
+			<br />
+			Nombre de personne(s) (min 1) : 
+                <h:inputText style="margin-bottom:5px" value="#{entryBean.numberOfPerson}" />
+			<br />
+			Autorisation de changer d'hotel
+			     <h:selectBooleanCheckbox style="margin-bottom:5px" value="#{entryBean.hotelChange}"/>
+			<br/>
+			Criteres particulier : 
+			<br />
+				<h:inputTextarea id="textarea" value="#{entryBean.critereArea}" style="width: 300px; height: 150px;" />
+			<br />
+			<h:commandButton style="margin-top:15px;display: block;margin: auto;" value="Valider" action="#{entryBean.startStays}" />
+			
+		</h:form>
+	</fieldset>
+	
 
 </h:body>
 </html>

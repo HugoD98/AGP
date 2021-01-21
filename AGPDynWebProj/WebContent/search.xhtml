@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:p="http://primefaces.org/ui" 
+	>
+<h:head>
+
+	<title>Bali booking</title>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	
+</h:head>
+<h:body>
+	<h1 style="text-align:center;">Sejour Bali</h1>
+	<h:form id="tableForm" >
+		<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{entryBean.touristicSiteList}" border="1">
+					<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
+					<h:column id="row">
+						<f:facet name="header">Nom du site</f:facet>
+							${site.name}
+							
+							<p:commandButton style="font-size: 0.8em;float:right;margin-left:10px" update=":tableForm:siteDetail" oncomplete="PF('description').show('#{component.clientId}')" icon="pi pi-search" title="View">
+               					<f:setPropertyActionListener value="#{resultBean.showDescription(site.name)}" target="#{resultBean.description}" />
+            				</p:commandButton>
+    						
+							
+					</h:column>
+					<h:column>
+						<f:facet name="header">Type d'activitite</f:facet>
+							${site.type}   
+					</h:column>
+					<h:column>
+						<f:facet name="header">Duree </f:facet>
+							${site.visitDuration} heures 
+					</h:column>
+					<h:column>
+						<f:facet name="header">Prix (activite + transport)</f:facet>
+		                    ${site.price} €
+					</h:column>
+		</h:dataTable>
+	
+		<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
+			        <p:outputPanel id="siteDetail" style="text-align:center;">
+						${resultBean.description}
+			            
+			        </p:outputPanel>
+		</p:overlayPanel>
+	</h:form>
+	
+	
+	
+
+	
+
+</h:body>
+</html>

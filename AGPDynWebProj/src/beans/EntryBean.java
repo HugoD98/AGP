@@ -1,10 +1,16 @@
 package beans;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+import environment.TouristicSite;
+
+@ManagedBean(name="entryBean")
 @SessionScoped
 public class EntryBean {
 
@@ -13,7 +19,11 @@ public class EntryBean {
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
+	private String critereArea = "";
+	private boolean hotelChange=false;
 	
+	private String research ="";
+	private ArrayList<TouristicSite> touristicSiteList = new ArrayList<TouristicSite>();
 	
 	public String startStays() {		
 		// ici on peut faire un appel de notre main avec tout nos params
@@ -24,9 +34,48 @@ public class EntryBean {
 		return "list";
 	}
 
+	public String startResearch() {		
+		if(this.research == "")return "index";
+		
+		System.out.println(research);
+		String[] researchTab = research.split("\\s+");
+		List<String> researchList = new ArrayList<String>();
+		researchList = Arrays.asList(researchTab);
+		System.out.println(researchList);
+		
+		touristicSiteList  = new ArrayList<TouristicSite>();
 
+		//touristicSiteList = bd.getLesSite(research)
+		
+		TouristicSite t1 = new TouristicSite("templeA", "culturel", 25, 2);
+		TouristicSite t2 = new TouristicSite("templeB", "culturel", 25, 3);
+		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);		
+		TouristicSite t4 = new TouristicSite("templeC", "culturel", 25, 2);
+		TouristicSite t5 = new TouristicSite("baladeA", "sportive", 5, 2);
+		TouristicSite t6 = new TouristicSite("muséeA", "culturel", 100, 3);
+
+		if(researchList.contains("sportive")){
+			touristicSiteList.add(t3);
+			touristicSiteList.add(t5);
+		}
+		if(researchList.contains("culturel")){
+			touristicSiteList.add(t1);
+			touristicSiteList.add(t2);			
+			touristicSiteList.add(t4);
+			touristicSiteList.add(t6);
+		}
+		
+		
+		
+		
+		
+
+
+		return "search";
+	}
 	
 	public EntryBean() {
+		System.out.println("main pouette");
 	}
 
 	public int getBudget() {
@@ -67,6 +116,46 @@ public class EntryBean {
 
 	public void setNumberOfPerson(int numberOfPerson) {
 		this.numberOfPerson = numberOfPerson;
+	}
+
+
+
+	public String getCritereArea() {
+		return critereArea;
+	}
+
+
+
+	public void setCritereArea(String critereArea) {
+		this.critereArea = critereArea;
+	}
+
+
+
+	public String getResearch() {
+		return research;
+	}
+
+
+
+	public void setResearch(String research) {
+		this.research = research;
+	}
+
+	public ArrayList<TouristicSite> getTouristicSiteList() {
+		return touristicSiteList;
+	}
+
+	public void setTouristicSiteList(ArrayList<TouristicSite> touristicSiteList) {
+		this.touristicSiteList = touristicSiteList;
+	}
+
+	public boolean isHotelChange() {
+		return hotelChange;
+	}
+
+	public void setHotelChange(boolean hotelChange) {
+		this.hotelChange = hotelChange;
 	}
 
 	

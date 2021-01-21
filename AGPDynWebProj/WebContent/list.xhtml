@@ -11,35 +11,44 @@
 	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
 </h:head>
 <h:body>
-	<h1 style="text-align:center;">Nos reservations</h1>
+	<h1 style="text-align:center;">Sejour Bali</h1>
 
 	<fieldset>
 		<legend>
-			<strong>Critère actuel</strong>
+			<strong>Critere actuel</strong>
 		</legend>		
 		Budget : #{entryBean.budget} <br /> 
-		Durée : #{entryBean.duration} <br />
+		Duree : #{entryBean.duration} <br />
 		Confort : #{entryBean.comfort} <br /> 
-		Intensité : #{entryBean.activityIntensity} <br />
+		Intensite : #{entryBean.activityIntensity} <br />
 		Nombre de personnes : #{entryBean.numberOfPerson} <br />
+		
+		<c:if test="#{entryBean.hotelChange eq true}">
+	        Avec possibilite de changement d'hotel : oui<br />
+    	</c:if>
+    	<c:if test="#{entryBean.hotelChange eq false}">
+			Avec possibilite de changement d'hotel : non <br />
+   		</c:if>
+		Criteres particuliers : #{entryBean.critereArea} <br />
+		
 
 	</fieldset>
 	<h:panelGroup>
-		<a href="index.jsf">Modifier les critères</a>
+		<a href="index.jsf">Modifier les criteres</a>
 	</h:panelGroup>
 	
 
 	
-	<h2>Voici les séjours qui vous sont proposés</h2>
+	<h2>Voici les sejours qui vous sont proposes</h2>
 	<h:form id="tableForm" >
 	
 		<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
 	
-			<h4>Proposition n°#{stayLoop.index+1} d'une durée de #{stay.duration} semaine(e) au prix de #{stay.price}€</h4>
+			<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} semaine(e) au prix de #{stay.price}€</h4>
 			<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">
 						
 				<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
-					<f:facet name="caption">Activité jour #{excursionLoop.index+1} </f:facet>
+					<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
 					<h:column id="row">
 						<f:facet name="header">Nom du site</f:facet>
 							${site.name}
@@ -51,11 +60,11 @@
 							
 					</h:column>
 					<h:column>
-						<f:facet name="header">Type d'activitité</f:facet>
+						<f:facet name="header">Type d'activitite</f:facet>
 							${site.type}   
 					</h:column>
 					<h:column>
-						<f:facet name="header">Durée </f:facet>
+						<f:facet name="header">Duree </f:facet>
 							${site.visitDuration} heures 
 					</h:column>
 					<h:column>
@@ -63,7 +72,7 @@
 		                    ${excursion.transports[excursion.touristicSites.indexOf(site)].name}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Prix (activité + transport)</f:facet>
+						<f:facet name="header">Prix (activite + transport)</f:facet>
 		                    ${site.price} + ${excursion.transports[excursion.touristicSites.indexOf(site)].price} =  ${site.price + excursion.transports[excursion.touristicSites.indexOf(site)].price} €
 					</h:column>
 				</h:dataTable>
