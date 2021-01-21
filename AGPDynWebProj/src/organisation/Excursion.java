@@ -95,7 +95,7 @@ public class Excursion {
 			
 			comfort += t.getComfort();
 		}
-		
+		System.out.println(transports.size());
 		this.comfort = comfort/transports.size();
 	}
 	
@@ -112,6 +112,24 @@ public class Excursion {
 	public TouristicSite getLastSite() {
 		
 		return touristicSites.get(touristicSites.size()-1);
+	}
+	
+	@Override
+	public String toString() { 
+		
+		String s = "Site touristiques : \n";
+		
+		for(TouristicSite t : this.touristicSites) {
+			
+			s += t.getName()+"\n";
+		}
+		s += "Transports : \n";
+		for(Transport t : this.transports) {
+			
+			s += t.getName()+"\n";
+		}
+		
+		return s;
 	}
 	
 }

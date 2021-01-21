@@ -64,7 +64,7 @@ public class ResultBean {
 		transportList2.add(foot3);
 
 		
-		Hotel hotel = new Hotel(comfort ,"Beach of Jimbaran" , comfort*100, 2, 3 );
+		Hotel hotel = new Hotel("argh", comfort ,"Beach of Jimbaran" , comfort*100, 2, 3 );
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(hotel);
 		

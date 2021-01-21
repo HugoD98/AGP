@@ -1,10 +1,8 @@
 package bde;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class BaseFunction {
+public class Setup {
 
 	public static void specifiyTextualLocation(String tableName, String keyName, String fileLocation) {
 		

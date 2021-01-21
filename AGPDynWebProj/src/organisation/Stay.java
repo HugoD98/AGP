@@ -18,6 +18,25 @@ public class Stay {
 		this.hotel = hotel;
 		this.price = calculatePrice();
 	}
+	
+	@Override
+	public String toString() {
+		
+		String s = "";
+		s += "duration : "+this.duration;
+		s += " price : "+this.price;
+		s += " Hotels : \n";
+		for(Hotel h : this.hotel) {
+			
+			s += h.getName()+"\n";
+		}
+		s += " Excursions : \n";
+		for(Excursion exc : this.excursions) {
+			
+			s += exc.toString();
+		}
+		return s;
+	}
 
 	public int calculatePrice() {
 		
@@ -65,5 +84,6 @@ public class Stay {
 	public void setHotel(ArrayList<Hotel> hotel) {
 		this.hotel = hotel;
 	}
+	
 	
 }

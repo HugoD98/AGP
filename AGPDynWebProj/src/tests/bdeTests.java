@@ -1,6 +1,6 @@
 package tests;
 
-import bde.BaseFunction;
+import bde.Setup;
 import bde.BdeEntry;
 import bde.Request;
 import bde.SQLRequest;
@@ -18,11 +18,11 @@ public class bdeTests {
 	@Test
 	public void testAddText() throws Exception {
 		
-		BaseFunction.specifiyTextualLocation("TouristicSite", "name", "src/RTest");
+		Setup.specifiyTextualLocation("TouristicSite", "name", "src/RTest");
 		
 		String text = "Bonjour a tous";
 		String c = "PingPong";
-		BaseFunction.addText(text, c);
+		Setup.addText(text, c);
 		
 		File repertoire = new File(BdeEntry.fileLocation+"/");
 	    
