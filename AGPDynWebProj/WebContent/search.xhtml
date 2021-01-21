@@ -4,7 +4,8 @@
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:f="http://java.sun.com/jsf/core" 
 	xmlns:ui="http://java.sun.com/jsf/facelets" 
-	xmlns:p="http://primefaces.org/ui" 
+	xmlns:p="http://primefaces.org/ui" 	
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	>
 <h:head>
 
@@ -15,7 +16,8 @@
 <h:body>
 	<h1 style="text-align:center;">Sejour Bali</h1>
 	<h:form id="tableForm" >
-		<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{entryBean.touristicSiteList}" border="1">
+		<c:if test="#{not empty entryBean.touristicSiteList}">
+			<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{entryBean.touristicSiteList}" border="1">
 					<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
 					<h:column id="row">
 						<f:facet name="header">Nom du site</f:facet>
@@ -33,20 +35,23 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Duree </f:facet>
-							${site.visitDuration} heures 
+							${site.visitDuration} minutes 
 					</h:column>
 					<h:column>
-						<f:facet name="header">Prix (activite + transport)</f:facet>
+						<f:facet name="header">Prix activite </f:facet>
 		                    ${site.price} €
 					</h:column>
-		</h:dataTable>
+			</h:dataTable>
 	
-		<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
+			<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
 			        <p:outputPanel id="siteDetail" style="text-align:center;">
 						${resultBean.description}
 			            
 			        </p:outputPanel>
-		</p:overlayPanel>
+			</p:overlayPanel>
+		</c:if>
+		<h:commandButton style="margin-top:15px;display: block;margin: auto;" value="Retour" action="index.jsf" />
+		
 	</h:form>
 	
 	

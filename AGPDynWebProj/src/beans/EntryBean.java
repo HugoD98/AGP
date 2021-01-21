@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import algorithm.Algorithm;
+import algorithm.AlgorithmUtility;
 import environment.TouristicSite;
 import organisation.Stay;
 
@@ -21,7 +22,7 @@ public class EntryBean {
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
-	private String critereArea = "nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise";
+	private String critereArea = "nager peintres panoramique plongee cyclisme volcanique nature Quad mer jet ski danse falaise";
 	private boolean hotelChange=false;
 	
 	private String research ="";
@@ -29,8 +30,7 @@ public class EntryBean {
 	
 	public String startStays() {		
 		// ici on peut faire un appel de notre main avec tout nos params
-		//Algorithm algo = new Algorithm("nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise", duration,comfort, budget , activityIntensity);
-		Algorithm algo = new Algorithm("nager peintres panoramique plongÃ©e cyclisme volcanique nature Quad mer jet ski danse falaise", 3, 3, 500, 1);
+		Algorithm algo = new Algorithm(critereArea, duration,comfort, budget , activityIntensity);
 
 		try {
 			algo.launch(3);
@@ -39,40 +39,21 @@ public class EntryBean {
 			e.printStackTrace();
 		}
 
-		return "index";
+		return "list";
 	}
 
 	public String startResearch() {		
 		if(this.research == "")return "index";
 		
 		System.out.println(research);
-		String[] researchTab = research.split("\\s+");
-		List<String> researchList = new ArrayList<String>();
-		researchList = Arrays.asList(researchTab);
-		System.out.println(researchList);
+
 		
-		touristicSiteList  = new ArrayList<TouristicSite>();
-
-		//touristicSiteList = bd.getLesSite(research)
-		/*
-		TouristicSite t1 = new TouristicSite("templeA", "culturel", 25, 2);
-		TouristicSite t2 = new TouristicSite("templeB", "culturel", 25, 3);
-		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);		
-		TouristicSite t4 = new TouristicSite("templeC", "culturel", 25, 2);
-		TouristicSite t5 = new TouristicSite("baladeA", "sportive", 5, 2);
-		TouristicSite t6 = new TouristicSite("muséeA", "culturel", 100, 3);
-
-		if(researchList.contains("sportive")){
-			touristicSiteList.add(t3);
-			touristicSiteList.add(t5);
+		try {
+			touristicSiteList  = AlgorithmUtility.getSites(research);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if(researchList.contains("culturel")){
-			touristicSiteList.add(t1);
-			touristicSiteList.add(t2);			
-			touristicSiteList.add(t4);
-			touristicSiteList.add(t6);
-		}
-		*/
 		
 		
 		
