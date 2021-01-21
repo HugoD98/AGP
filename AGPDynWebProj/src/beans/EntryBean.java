@@ -21,7 +21,7 @@ public class EntryBean {
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
-	private String critereArea = "nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise";
+	private String critereArea = "nager peintres panoramique plongï¿½e cyclisme volcanique nature Quad mer jet ski danse falaise";
 	private boolean hotelChange=false;
 	
 	private String research ="";
@@ -29,9 +29,11 @@ public class EntryBean {
 	
 	public String startStays() {		
 		// ici on peut faire un appel de notre main avec tout nos params
-		//Algorithm algo = new Algorithm("nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise", duration,comfort, budget , activityIntensity);
+		//Algorithm algo = new Algorithm("nager peintres panoramique plongï¿½e cyclisme volcanique nature Quad mer jet ski danse falaise", duration,comfort, budget , activityIntensity);
 		Algorithm algo = new Algorithm("nager peintres panoramique plongÃ©e cyclisme volcanique nature Quad mer jet ski danse falaise", 3, 3, 500, 1);
 
+		System.out.println("algo cree");
+		
 		try {
 			algo.launch(3);
 		} catch (Exception e) {
@@ -39,7 +41,7 @@ public class EntryBean {
 			e.printStackTrace();
 		}
 
-		return "index";
+		return "list";
 	}
 
 	public String startResearch() {		
@@ -60,7 +62,7 @@ public class EntryBean {
 		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);		
 		TouristicSite t4 = new TouristicSite("templeC", "culturel", 25, 2);
 		TouristicSite t5 = new TouristicSite("baladeA", "sportive", 5, 2);
-		TouristicSite t6 = new TouristicSite("muséeA", "culturel", 100, 3);
+		TouristicSite t6 = new TouristicSite("musï¿½eA", "culturel", 100, 3);
 
 		if(researchList.contains("sportive")){
 			touristicSiteList.add(t3);
@@ -74,11 +76,6 @@ public class EntryBean {
 		}
 		*/
 		
-		
-		
-		
-
-
 		return "search";
 	}
 	

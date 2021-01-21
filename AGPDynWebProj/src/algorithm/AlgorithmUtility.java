@@ -1,17 +1,9 @@
 package algorithm;
 
-import static org.junit.Assert.assertEquals;
-
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.TextField;
 
 import bde.BdeEntry;
 import bde.Request;

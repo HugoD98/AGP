@@ -35,8 +35,10 @@ public class TextRequest {
 	    
 	    // Pour indexer les fichiers
 	    
-	    File repertoire = new File(BdeEntry.fileLocation+"/");
+	    File repertoire = new File(BdeEntry.fileLocation);
 	    
+	    System.out.println(repertoire.getName());
+
         String list[] = repertoire.list();      
         
         if (list != null) {         

@@ -44,7 +44,7 @@
 	
 		<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
 	
-			<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} semaine(e) au prix de #{stay.price}€</h4>
+			<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} jour(s) au prix de #{stay.price}€</h4>
 			<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">
 						
 				<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
