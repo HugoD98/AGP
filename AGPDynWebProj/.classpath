@@ -4,14 +4,14 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/COO"/>
-	<classpathentry kind="lib" path="/Users/hugoducly/Documents/AGP/lucene/lucene-analyzers-common-8.7.0.jar"/>
-	<classpathentry kind="lib" path="/Users/hugoducly/Documents/AGP/lucene/lucene-core-8.7.0.jar"/>
-	<classpathentry kind="lib" path="/Users/hugoducly/Documents/AGP/lucene/lucene-queries-8.7.0.jar"/>
-	<classpathentry kind="lib" path="/Users/hugoducly/Documents/AGP/lucene/lucene-queryparser-8.7.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Antoine/Downloads/lucene-queryparser-8.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Antoine/Downloads/lucene-analyzers-common-8.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Antoine/Downloads/lucene-core-8.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Antoine/Downloads/lucene-queries-8.7.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

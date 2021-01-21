@@ -3,7 +3,8 @@ package bde;
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
-import org.apache.lucene.analysis.*;
+
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.*;
 import org.apache.lucene.document.*;
 import org.apache.lucene.index.*;
@@ -14,7 +15,10 @@ import org.apache.lucene.store.*;
 public class TextRequest {
 	
 	private ArrayList<String>  results;
+	private ArrayList<Float>  scores;
 	private String current;
+	private Float currentScore;
+	
 	private int index = -1;
 	
 	public void createIndex() throws IOException {
@@ -75,6 +79,7 @@ public class TextRequest {
 	    	Document d = searcher.doc(docId);
 	    	if(!this.results.contains(d.get("name").split("\\.")[0])) {
 	    		this.results.add(d.get("name").split("\\.")[0]);
+	    		this.scores.add(Float.valueOf(results.scoreDocs[i].score));
 	    	}
 	    		
 	    	
@@ -87,6 +92,7 @@ public class TextRequest {
 	public void init(String toSearch) throws Exception {
 		
 		this.results = new ArrayList<String>();
+		this.scores = new ArrayList<>();
 		createIndex();
 		searchText(toSearch);
 	}
@@ -96,6 +102,11 @@ public class TextRequest {
 		return current;
 	}
 	
+	public Float getScore() {
+		
+		return currentScore;
+	}
+	
 	public Boolean next(){
 		
 		if(results.size()==0)
@@ -103,6 +114,7 @@ public class TextRequest {
 		else if(index < 0) {
 			index = 0;
 			current = results.get(index);
+			currentScore = scores.get(index);
 			index++;
 			return true;
 		} else if(index >= results.size()) {
@@ -110,6 +122,7 @@ public class TextRequest {
 			return false;
 		} else {
 			current = results.get(index);
+			currentScore = scores.get(index);
 			index = index+1;
 		}
 			

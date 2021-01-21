@@ -11,14 +11,48 @@ public class Stay {
 	private ArrayList<Excursion> excursions;
 	private ArrayList<Hotel> hotel;
 	
-	public Stay(int price, int duration, ArrayList<Excursion> excursions, ArrayList<Hotel> hotel) {
+	public Stay(int duration, ArrayList<Excursion> excursions, ArrayList<Hotel> hotel) {
 		
-		this.price = price;
 		this.duration = duration;
 		this.excursions = excursions;
 		this.hotel = hotel;
+		this.price = calculatePrice();
+	}
+	
+	@Override
+	public String toString() {
+		
+		String s = "";
+		s += "duration : "+this.duration;
+		s += " price : "+this.price;
+		s += " Hotels : \n";
+		for(Hotel h : this.hotel) {
+			
+			s += h.getName()+"\n";
+		}
+		s += " Excursions : \n";
+		for(Excursion exc : this.excursions) {
+			
+			s += exc.toString();
+		}
+		return s;
 	}
 
+	public int calculatePrice() {
+		
+		int price = 0;
+		
+		for(Excursion exc : this.excursions) {
+			price += exc.getPrice();
+		}
+		
+		for(Hotel h : hotel) {
+			price += h.getPrice();
+		}
+		
+		return price;
+	}
+	
 	public int getPrice() {
 		return price;
 	}
@@ -50,5 +84,6 @@ public class Stay {
 	public void setHotel(ArrayList<Hotel> hotel) {
 		this.hotel = hotel;
 	}
+	
 	
 }

@@ -2,7 +2,12 @@ package environment;
 
 public class OnFoot extends Transport{
 	
-	public OnFoot() {
-		super(0, 6 ,"marche a pied");
+	public OnFoot(int distance) {
+				
+		super(0, 6);
+		this.distance = distance;
+		this.comfort = 100 - (5*distance);
+		this.price = this.pricePerKm*distance;
+		this.name = "A pieds";
 	}
 }

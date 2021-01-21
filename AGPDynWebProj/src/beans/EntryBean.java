@@ -8,18 +8,20 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import algorithm.Algorithm;
 import environment.TouristicSite;
+import organisation.Stay;
 
 @ManagedBean(name="entryBean")
 @SessionScoped
 public class EntryBean {
 
-	private int budget = 5000; // budget per person for one week (500-8000) 
-	private int duration = 1; // duration in week (1-4)
+	private int budget = 1000; // budget per person for one week (500-8000) 
+	private int duration = 3; // duration in week (1-4)
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
-	private String critereArea = "";
+	private String critereArea = "nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise";
 	private boolean hotelChange=false;
 	
 	private String research ="";
@@ -27,11 +29,17 @@ public class EntryBean {
 	
 	public String startStays() {		
 		// ici on peut faire un appel de notre main avec tout nos params
-		// Main main = new Main();
-		// main.start(budget,duration,comfort,activityIntensity,numberOfPerson);
+		//Algorithm algo = new Algorithm("nager peintres panoramique plongée cyclisme volcanique nature Quad mer jet ski danse falaise", duration,comfort, budget , activityIntensity);
+		Algorithm algo = new Algorithm("nager peintres panoramique plongÃ©e cyclisme volcanique nature Quad mer jet ski danse falaise", 3, 3, 500, 1);
 
+		try {
+			algo.launch(3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		return "list";
+		return "index";
 	}
 
 	public String startResearch() {		
@@ -46,7 +54,7 @@ public class EntryBean {
 		touristicSiteList  = new ArrayList<TouristicSite>();
 
 		//touristicSiteList = bd.getLesSite(research)
-		
+		/*
 		TouristicSite t1 = new TouristicSite("templeA", "culturel", 25, 2);
 		TouristicSite t2 = new TouristicSite("templeB", "culturel", 25, 3);
 		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);		
@@ -64,7 +72,7 @@ public class EntryBean {
 			touristicSiteList.add(t4);
 			touristicSiteList.add(t6);
 		}
-		
+		*/
 		
 		
 		

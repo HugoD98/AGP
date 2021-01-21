@@ -2,7 +2,7 @@ package bde;
 
 public class BdeEntry {
 	
-	public static String host = "localhost:8889";
+	public static String host = "localhost";
 	public static String base = "BaliVoyage";
 	public static String user = "root";
 	public static String password = "root";

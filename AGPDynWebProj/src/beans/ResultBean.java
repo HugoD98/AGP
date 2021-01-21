@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
+import algorithm.Algorithm;
+import algorithm.AlgorithmUtility;
 import environment.Boat;
 import environment.Bus;
 import environment.Hotel;
@@ -40,36 +42,24 @@ public class ResultBean {
 	private EntryBean entryBean;
 	
 	public ResultBean() {
-		System.out.println("me voici au début de la création de la page web");
-		TouristicSite t1 = new TouristicSite("templeA", "culturel", 25, 2);
-		TouristicSite t2 = new TouristicSite("templeB", "culturel", 25, 3);
-		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2);
+		
+		System.out.println("me voici au debut de la creation de la page web");
+		/*
+		TouristicSite t1 = new TouristicSite("templeA", "culturel", 25, 2, 3, 4);
+		TouristicSite t2 = new TouristicSite("templeB", "culturel", 25, 3, 3, 4);
+		TouristicSite t3 = new TouristicSite("surf", "sportive", 200, 2, 3, 4);
 		ArrayList<TouristicSite> touristicSiteMap1 = new ArrayList<TouristicSite>();
 		touristicSiteMap1.add(t1);
 		touristicSiteMap1.add(t2);
 		touristicSiteMap1.add(t3);
 		
-		
-		touristicSiteMap.add(t1);
-		touristicSiteMap.add(t2);
-		touristicSiteMap.add(t3);
-		
-		TouristicSite t4 = new TouristicSite("templeC", "culturel", 25, 2);
-		TouristicSite t5 = new TouristicSite("baladeA", "sportive", 5, 2);
-		TouristicSite t6 = new TouristicSite("muséeA", "culturel", 100, 3);
-		ArrayList<TouristicSite> touristicSiteMap2 = new ArrayList<TouristicSite>();
-		touristicSiteMap2.add(t4);
-		touristicSiteMap2.add(t5);
-		touristicSiteMap2.add(t6);
-
-		
-		Transport bus = new Bus();
+		Transport bus = new Bus(2);
 		Transport boat = new Boat();
-		Transport foot = new OnFoot();
+		Transport foot = new OnFoot(2);
 		
-		Transport bus2 = new Bus();
-		Transport foot2 = new OnFoot();
-		Transport foot3 = new OnFoot();
+		Transport bus2 = new Bus(2);
+		Transport foot2 = new OnFoot(2);
+		Transport foot3 = new OnFoot(2);
 
 		ArrayList<Transport> transportList1 = new ArrayList<Transport>();
 		transportList1.add(bus);
@@ -82,7 +72,7 @@ public class ResultBean {
 		transportList2.add(foot3);
 
 		
-		Hotel hotel = new Hotel(comfort ,"Beach of Jimbaran" , comfort*100 );
+		Hotel hotel = new Hotel("argh", comfort ,"Beach of Jimbaran" , comfort*100, 2, 3 );
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelList.add(hotel);
 		
@@ -96,8 +86,13 @@ public class ResultBean {
 			
 		this.stays.add(new Stay( (int)(5000/2) , 1 , excusionList , hotelList));
 		this.stays.add(new Stay( (int)(5000-200) , 3 , excusionList , hotelList));
+		*/
 		
+		stays = AlgorithmUtility.stays;
+		
+		System.out.println(stays);
 		System.out.println(entryBean);
+
 
 
 	}
@@ -106,7 +101,7 @@ public class ResultBean {
 		System.out.println("pouette");
 		System.out.println(name);
 		
-		this.description = "Situé à l’Est de l’île, le Mont Agung est un volcan actif culminant à 3142 mètres d’altitude, soit le plus haut sommet de tout Bali. Il assure la fertilité des terres environnantes, c’est pourquoi il est très respecté par la population balinaise tout en étant craint du fait de ses éruptions spectaculaires qui peuvent parfois être meurtrières (près de 2000 victimes en 1963). L’ascension du Mont Agung est obligatoirement encadrée par un guide local et réservée aux sportifs expérimentés car plus longue et physique que celle du Mont Batur. L’expédition complète dure entre 5 et 12h selon votre rythme et le circuit choisi.";
+		this.description = "Situï¿½ ï¿½ lï¿½Est de lï¿½ï¿½le, le Mont Agung est un volcan actif culminant ï¿½ 3142 mï¿½tres dï¿½altitude, soit le plus haut sommet de tout Bali. Il assure la fertilitï¿½ des terres environnantes, cï¿½est pourquoi il est trï¿½s respectï¿½ par la population balinaise tout en ï¿½tant craint du fait de ses ï¿½ruptions spectaculaires qui peuvent parfois ï¿½tre meurtriï¿½res (prï¿½s de 2000 victimes en 1963). Lï¿½ascension du Mont Agung est obligatoirement encadrï¿½e par un guide local et rï¿½servï¿½e aux sportifs expï¿½rimentï¿½s car plus longue et physique que celle du Mont Batur. Lï¿½expï¿½dition complï¿½te dure entre 5 et 12h selon votre rythme et le circuit choisi.";
 		
 		
 		
