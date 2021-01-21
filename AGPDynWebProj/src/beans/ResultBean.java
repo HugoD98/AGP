@@ -79,6 +79,11 @@ public class ResultBean {
 		
 	}
 	
+	public int hotelPrice(ArrayList<Hotel> hotels, int index){
+		if(hotels.size()>index)return hotels.get(index).getPrice();
+		
+		return 0;
+	}
 	
 	public int getBudget() {
 		return budget;

@@ -18,7 +18,7 @@
 	<h:form id="tableForm" >
 		<c:if test="#{not empty entryBean.touristicSiteList}">
 			<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{entryBean.touristicSiteList}" border="1">
-					<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
+					<f:facet name="caption">Activite sur le thème '#{entryBean.research }' </f:facet>
 					<h:column id="row">
 						<f:facet name="header">Nom du site</f:facet>
 							${site.name}
