@@ -22,6 +22,7 @@ public class EntryBean {
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
+
 	private String critereArea = "nager peintres panoramique plongee cyclisme volcanique nature Quad mer jet ski danse falaise";
 	private boolean hotelChange=false;
 	
@@ -30,8 +31,11 @@ public class EntryBean {
 	
 	public String startStays() {		
 		// ici on peut faire un appel de notre main avec tout nos params
+
 		Algorithm algo = new Algorithm(critereArea, duration,comfort, budget , activityIntensity);
 
+		System.out.println("algo cree");
+		
 		try {
 			algo.launch(3);
 		} catch (Exception e) {
@@ -47,19 +51,14 @@ public class EntryBean {
 		
 		System.out.println(research);
 
-		
 		try {
 			touristicSiteList  = AlgorithmUtility.getSites(research);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+
 		}
 		
-		
-		
-		
-
-
 		return "search";
 	}
 	

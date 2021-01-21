@@ -25,7 +25,6 @@ public class SQLRequest {
 		if (connection == null) {
 			try {
 		        Class.forName("com.mysql.jdbc.Driver");
-
 				connection = DriverManager.getConnection(BdeEntry.url, BdeEntry.user, BdeEntry.password);
 			} catch (Exception e) {
 				System.err.println("Connection failed : " + e.getMessage());
@@ -34,6 +33,8 @@ public class SQLRequest {
 	}
 	
 	public void init(String request) {
+		
+		//System.out.println("debut requete sql");
 		
 		try {
 

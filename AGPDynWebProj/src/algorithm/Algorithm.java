@@ -34,6 +34,7 @@ public class Algorithm {
 	
 	public void init() throws Exception {
 		
+		System.out.println("debut requete");
 		this.budget = this.initBudget;
 		program = new int[this.duration];
 		excursions = new ArrayList<>();
@@ -250,115 +251,77 @@ public class Algorithm {
 		return budget;
 	}
 
-
-
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
-
-
 
 	public int getDailyBudget() {
 		return dailyBudget;
 	}
 
-
-
 	public void setDailyBudget(int dailyBudget) {
 		this.dailyBudget = dailyBudget;
 	}
-
-
 
 	public int getRythm() {
 		return rythm;
 	}
 
-
-
 	public void setRythm(int rythm) {
 		this.rythm = rythm;
 	}
-
-
 
 	public int getDuration() {
 		return duration;
 	}
 
-
-
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
-
 
 	public int getComfort() {
 		return comfort;
 	}
 
-
-
 	public void setComfort(int comfort) {
 		this.comfort = comfort;
 	}
-
-
 
 	public int[] getProgram() {
 		return program;
 	}
 
-
-
 	public void setProgram(int[] program) {
 		this.program = program;
 	}
-
-
 
 	public ArrayList<Excursion> getExcursions() {
 		return excursions;
 	}
 
-
-
 	public void setExcursions(ArrayList<Excursion> excursions) {
 		this.excursions = excursions;
 	}
-
-
 
 	public ArrayList<TouristicSite> getSites() {
 		return sites;
 	}
 
-
-
 	public void setSites(ArrayList<TouristicSite> sites) {
 		this.sites = sites;
 	}
-
-
 
 	public ArrayList<Hotel> getHotelsList() {
 		return hotelsList;
 	}
 
-
-
 	public void setHotelsList(ArrayList<Hotel> hotelsList) {
 		this.hotelsList = hotelsList;
 	}
 
-
-
 	public ArrayList<Hotel> getHotels() {
 		return hotels;
 	}
-
-
 
 	public void setHotels(ArrayList<Hotel> hotels) {
 		this.hotels = hotels;
