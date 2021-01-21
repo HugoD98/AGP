@@ -17,7 +17,7 @@ import organisation.Stay;
 
 public class AlgorithmUtility {
 
-	public static ArrayList<Stay> stays;
+	public static ArrayList<Stay> stays = new ArrayList<Stay>();
 	
 	public static int getRandom(int min, int max) {
 		

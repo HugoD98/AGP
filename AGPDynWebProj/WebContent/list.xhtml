@@ -38,54 +38,64 @@
 	</h:panelGroup>
 	
 
+	<c:if test="#{not empty resultBean.stays}">
 	
-	<h2>Voici les sejours qui vous sont proposes</h2>
-	<h:form id="tableForm" >
+		<h2>Voici les sejours qui vous sont proposes</h2>
+		<h:form id="tableForm" >
 	
-		<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
+			<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
 	
-			<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} jour(s) au prix de #{stay.price}€</h4>
-			<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">
-						
-				<h:dataTable id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
-					<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
-					<h:column id="row">
+
+				<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} jours au prix de #{stay.price}€</h4>
+				<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">						
+					<h:dataTable binding="#{table}" id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
+					
+						<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
+						<h:column id="row">
 						<f:facet name="header">Nom du site</f:facet>
 							${site.name}
-							
 							<p:commandButton style="font-size: 0.8em;float:right;margin-left:10px" update=":tableForm:siteDetail" oncomplete="PF('description').show('#{component.clientId}')" icon="pi pi-search" title="View">
                					<f:setPropertyActionListener value="#{resultBean.showDescription(site.name)}" target="#{resultBean.description}" />
             				</p:commandButton>
-    						
-							
-					</h:column>
-					<h:column>
-						<f:facet name="header">Type d'activitite</f:facet>
-							${site.type}   
-					</h:column>
-					<h:column>
-						<f:facet name="header">Duree </f:facet>
-							${site.visitDuration} heures 
-					</h:column>
-					<h:column>
-						<f:facet name="header">Transport </f:facet>
-		                    ${excursion.transports[excursion.touristicSites.indexOf(site)].name}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Prix (activite + transport)</f:facet>
-		                    ${site.price} + ${excursion.transports[excursion.touristicSites.indexOf(site)].price} =  ${site.price + excursion.transports[excursion.touristicSites.indexOf(site)].price} €
-					</h:column>
-				</h:dataTable>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Type d'activitite</f:facet>
+								${site.type}   
+						</h:column>
+						<h:column>
+							<f:facet name="header">Duree </f:facet>
+								${site.visitDuration} minutes 
+						</h:column>
+						<h:column>
+							<f:facet name="header">Transport </f:facet>
+			                    ${excursion.transports[excursion.touristicSites.indexOf(site)].name}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Prix (activite + transport)</f:facet>
+			                    ${site.price} + ${excursion.transports[excursion.touristicSites.indexOf(site)].price} =  ${site.price + excursion.transports[excursion.touristicSites.indexOf(site)].price} €
+						</h:column>
+						
+						
+					</h:dataTable>
+					<ui:fragment rendered="#{stay.hotel.size() > excursionLoop.index}">
+							<ui:fragment rendered="${excursion.transports[excursion.touristicSites.size()].price > 0}">
+									Le retour se fera en ${excursion.transports[excursion.touristicSites.size()].name} pour un prix de ${excursion.transports[excursion.touristicSites.size()].price} €. 	
+							</ui:fragment>
+					
+							Vous passerez votre nuit a l'hotel #{stay.hotel.get(excursionLoop.index).name} #{stay.hotel.get(excursionLoop.index).star} étoile(s) pour un prix de #{stay.hotel.get(excursionLoop.index).price} €
+					</ui:fragment>
+					<br />
+					<br />
+				</ui:repeat>
 			</ui:repeat>
-		</ui:repeat>
-		<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
-			        <p:outputPanel id="siteDetail" style="text-align:center;">
-						${resultBean.description}
-			            
-			        </p:outputPanel>
-		</p:overlayPanel>
-	</h:form>
-	
+			<p:overlayPanel widgetVar="description" showEffect="fade" hideEffect="fade" style="width:600px" >
+				        <p:outputPanel id="siteDetail" style="text-align:center;">
+							${resultBean.description}
+				            
+				        </p:outputPanel>
+			</p:overlayPanel>
+		</h:form>
+	</c:if>
 	
 	
 </h:body>
