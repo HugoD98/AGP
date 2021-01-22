@@ -30,7 +30,7 @@ public class EntryBean {
 	private ArrayList<TouristicSite> touristicSiteList = new ArrayList<TouristicSite>();
 	
 	public String startStays() {		
-		// ici on peut faire un appel de notre main avec tout nos params
+		
 
 		Algorithm algo = new Algorithm(critereArea, duration,comfort, budget , activityIntensity);
 
