@@ -41,22 +41,22 @@ public class ResultBean {
 	
 	public ResultBean() {
 		
-		System.out.println("me voici au debut de la creation de la page web");
+		//System.out.println("me voici au debut de la creation de la page web");
 		stays = AlgorithmUtility.stays;
 		if(stays.size() > 0){
-			System.out.println(stays);
-			System.out.println("voici les hotels");
-	
-			System.out.println(stays.get(0).getExcursions().size());
-			System.out.println(entryBean);
+			
+			//System.out.println(stays);
+			//System.out.println("voici les hotels");
+			//System.out.println(stays.get(0).getExcursions().size());
+			//System.out.println(entryBean);
 		}
 
 
 	}
 	
 	public String showDescription(String name){
-		System.out.println("pouette");
-		System.out.println(name);
+		//System.out.println("pouette");
+		//System.out.println(name);
 		
 		try {
 			this.description = AlgorithmUtility.getText(name);
@@ -66,7 +66,7 @@ public class ResultBean {
 		}
 		
 		
-		System.out.println(description);
+		//System.out.println(description);
 		this.description = this.description.replaceAll("�|�|�","a");
 		this.description = this.description.replaceAll("�|�|�|�","e");
 		this.description = this.description.replaceAll("�|�","i");
