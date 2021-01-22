@@ -35,7 +35,7 @@ public class Algorithm {
 	
 	public void init() throws Exception {
 		
-		//System.out.println("debut requete");
+ 
 		this.budget = this.initBudget;
 		program = new int[this.duration];
 		excursions = new ArrayList<>();
@@ -49,14 +49,23 @@ public class Algorithm {
 		
 		ArrayList<Stay> stays = new ArrayList<>();
 		
+		Boolean b = true;
+		
 		for(int i=0; i<n; i++) {
 			
-			init();
-			fillProgram();
-			//System.out.println("Program filled");
-			fill();
-			Stay s = new Stay(duration, excursions, hotels);
-			stays.add(s);
+			b = true;
+			
+			while(b) {
+				
+				init();
+				fillProgram();
+				fill();
+				Stay s = new Stay(duration, excursions, hotels);
+				if(s.getPrice() <= this.initBudget) {
+					stays.add(s);
+					b = !b;
+				}
+			}	
 		}
 		
 		AlgorithmUtility.stays = stays;
@@ -120,7 +129,7 @@ public class Algorithm {
 						}	
 					}
 				}
-				//System.out.println(searchStar);
+ 
 				if (searchStar > 1)
 					searchStar -= 1;
 			}
@@ -134,30 +143,30 @@ public class Algorithm {
 	
 	public void fill() {
 		
-		//System.out.println(sites.size());
+ 
 		
 		for(int day=0; day<duration; day++) {
 			
-			//System.out.println("Budget global : "+ budget);
+ 
 			
-			//System.out.println("Nb exc du jour : "+ program[day]);
+ 
 			
 			dailyBudget = budget / (duration-day);
 			
-			//System.out.println("Budget du jour : "+ dailyBudget);
+ 
 			
 			int hotelBudget;
 			if(day < duration-1) {
 				
 				hotelBudget = (int)(dailyBudget/3);
 				
-				//System.out.println("Budget hotel : "+ hotelBudget);
+ 
 				
-				//System.out.println("Debut hotel jour "+day);
+ 
 				
 				addHotel(hotelBudget);
 				
-				//System.out.println("hotel jour "+day+" termine");
+ 
 			} else {
 				
 				hotelBudget = 0;
@@ -165,19 +174,19 @@ public class Algorithm {
 				
 			int excBudget = dailyBudget - hotelBudget;
 			
-			//System.out.println("budget excursions : "+excBudget);
+ 
 			
 			for(int i=0; i<program[day]; i++) {
 				
 				int budgetExc = (int)(excBudget/(program[day]-i));
 				
-				//System.out.println("budget excursion : "+budgetExc);
+ 
 				
-				//System.out.println("Debut excursion "+i);
+ 
 				
 				Excursion excursion = createExcursion(budgetExc, 100);
 				
-				//System.out.println("excursion "+i+" terminee");
+ 
 				
 				addExcursion(excursion);
 				
@@ -187,7 +196,7 @@ public class Algorithm {
 				}	
 			}
 			
-			//System.out.println("Jour "+day+" termine");			
+ 			
 		}
 	}
 	
@@ -206,7 +215,7 @@ public class Algorithm {
 	
 	public Excursion createExcursion(int budget, int duration) {
 		
-		//System.out.println("nb de sites dispo : "+sites.size());
+ 
 		
 		Excursion excursion = new Excursion();
 		TouristicSite site;
@@ -221,12 +230,12 @@ public class Algorithm {
 		Transport t = AlgorithmUtility.getBestTransport(AlgorithmUtility.getDistance(hotels.get(hotels.size()-1), site));
 		excursion.addTransport(t);
 		
-		//System.out.println("budget : "+budget);
-		//System.out.println("price : "+excursion.getPrice());
+ 
+ 
 		
 		while(excursion.getDuration()<=duration  && excursion.getPrice()<=budget) {
 			
-			//System.out.println("sites restant : "+sites.size());
+ 
 			
 			TouristicSite lastSite = excursion.getLastSite();
 			
@@ -238,7 +247,7 @@ public class Algorithm {
 			excursion.addSite(site);
 			sites.remove(site);
 			
-			//System.out.println("price : "+excursion.getPrice());
+ 
 			
 			Transport t2 = AlgorithmUtility.getBestTransport(AlgorithmUtility.getDistance(lastSite, site));
 		
@@ -249,7 +258,7 @@ public class Algorithm {
 		
 		excursion.actualizeComfort();
 		
-		//System.out.println("Excursion creee");
+ 
 		
 		return excursion;
 	}

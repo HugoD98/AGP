@@ -24,7 +24,7 @@ public class AlgorithmTest {
 		
 		for(int i=0; i<algo.getProgram().length; i++) {
 			
-			System.out.println("pour le jour : "+i+" on a "+algo.getProgram()[i]+" excursions.");
+ 
 		}	
 	}
 	
@@ -55,15 +55,15 @@ public class AlgorithmTest {
 		
 		for(TouristicSite t : sites) {
 			
-			System.out.println(t.getName());
+ 
 		}
 		
 		for(Transport t : trans) {
 			
-			System.out.println(t.getName());
+ 
 		}
-		System.out.println(comfort);
-		System.out.println(price);
+ 
+ 
 		
 	}
 
@@ -73,23 +73,23 @@ public class AlgorithmTest {
 		Algorithm algo = new Algorithm("nager peintres panoramique plongée cyclisme nature ", 4, 4, 100, 3);
 	
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 		algo.addHotel(100);
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getName());
-		System.out.println(algo.getHotels().get(algo.getHotels().size()-1).getStar());
+ 
+ 
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class AlgorithmTest {
 		
 		String s = AlgorithmUtility.getText("Mont Batur");
 	
-		System.out.println("test "+s);
+ 
 	}
 
 }

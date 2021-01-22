@@ -95,7 +95,7 @@ public class Excursion {
 			
 			comfort += t.getComfort();
 		}
-		//System.out.println(transports.size());
+ 
 		this.comfort = comfort/transports.size();
 	}
 	

@@ -34,7 +34,7 @@ public class SQLRequest {
 	
 	public void init(String request) {
 		
-		//System.out.println("debut requete sql");
+ 
 		
 		try {
 

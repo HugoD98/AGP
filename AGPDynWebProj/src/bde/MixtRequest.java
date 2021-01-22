@@ -31,15 +31,23 @@ public class MixtRequest {
 			String[] word = requete.split("with", 2);
 			text = word[1];
 			sqlText = word[0];
+			String result = "";
+			String debut = "";
+			if(!sqlText.contains(BdeEntry.c) && !sqlText.contains("*")) {
+				
+				debut += sqlText.substring(0, 6);
+				debut += " "+BdeEntry.c+", ";
+				debut += sqlText.substring(7);
+			}
 			
-			requeteSQL.init(sqlText);
+			requeteSQL.init(result);
 			requeteTextuelle.init(text);
 			
 			String resText;
 			
 			ResultSetMetaData meta = requeteSQL.getMetaData();
 			
-			//System.out.println(meta.getColumnCount());
+ 
 			
 			for(int i=1; i<=meta.getColumnCount(); i++) {
 				labels.add(meta.getColumnLabel(i));
@@ -63,7 +71,7 @@ public class MixtRequest {
 					}
 				}
 				
-				//System.out.println(res.size());
+ 
 				
 				if(res.size() > 0)
 					results.add(res);
@@ -73,7 +81,7 @@ public class MixtRequest {
 	
 	public Boolean next() {
 		
-		//System.out.println(index);
+ 
 		
 		if (results.size() ==0)
 			return false;

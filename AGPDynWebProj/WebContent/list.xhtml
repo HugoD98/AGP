@@ -13,7 +13,6 @@
 <h:body>
 	<h1 style="text-align:center;">Sejour Bali</h1>
 
-	<fieldset>
 		<legend>
 			<strong>Critere actuel</strong>
 		</legend>		
@@ -32,7 +31,6 @@
 		Criteres particuliers : #{entryBean.critereArea} <br />
 		
 
-	</fieldset>
 	<h:panelGroup>
 		<a href="index.jsf">Modifier les criteres</a>
 	</h:panelGroup>
@@ -44,13 +42,15 @@
 		<h:form id="tableForm" >
 	
 			<ui:repeat var="stay" varStatus="stayLoop" value="#{resultBean.stays}">
-	
-
-				<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} jours au prix de #{stay.price}€</h4>
-				<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">						
+			
+					<h4>Proposition n°#{stayLoop.index+1} d'une duree de #{stay.duration} jours au prix de #{stay.price}€</h4>
+				
+				<ui:repeat var="excursion"  varStatus="excursionLoop" value="#{stay.excursions}">			
 					<h:dataTable binding="#{table}" id="table" var="site" varStatus="siteLoop" value="#{excursion.touristicSites}" border="1">
-					
-						<f:facet name="caption">Activite jour #{excursionLoop.index+1} </f:facet>
+						<f:facet name="caption">
+							Activite jour #{excursionLoop.index+1} (prix journalié :#{excursion.price+resultBean.hotelPrice(stay.hotel,excursionLoop.index)}€) 
+						</f:facet>
+						
 						<h:column id="row">
 						<f:facet name="header">Nom du site</f:facet>
 							${site.name}
@@ -79,7 +79,7 @@
 					</h:dataTable>
 					<ui:fragment rendered="#{stay.hotel.size() > excursionLoop.index}">
 							<ui:fragment rendered="${excursion.transports[excursion.touristicSites.size()].price > 0}">
-									Le retour se fera en ${excursion.transports[excursion.touristicSites.size()].name} pour un prix de ${excursion.transports[excursion.touristicSites.size()].price} €. 	
+									Le retour a l'hotel se fera en ${excursion.transports[excursion.touristicSites.size()].name} pour un prix de ${excursion.transports[excursion.touristicSites.size()].price} €. 	
 							</ui:fragment>
 					
 							Vous passerez votre nuit a l'hotel #{stay.hotel.get(excursionLoop.index).name} #{stay.hotel.get(excursionLoop.index).star} étoile(s) pour un prix de #{stay.hotel.get(excursionLoop.index).price} €

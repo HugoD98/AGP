@@ -20,6 +20,8 @@ import environment.Transport;
 import organisation.Excursion;
 import organisation.Stay;
 
+
+
 @ManagedBean
 @RequestScoped
 public class ResultBean {
@@ -41,22 +43,22 @@ public class ResultBean {
 	
 	public ResultBean() {
 		
-		//System.out.println("me voici au debut de la creation de la page web");
+ 
 		stays = AlgorithmUtility.stays;
 		if(stays.size() > 0){
-			
-			//System.out.println(stays);
-			//System.out.println("voici les hotels");
-			//System.out.println(stays.get(0).getExcursions().size());
-			//System.out.println(entryBean);
+ 
+ 
+	
+ 
+ 
 		}
 
 
 	}
 	
 	public String showDescription(String name){
-		//System.out.println("pouette");
-		//System.out.println(name);
+ 
+ 
 		
 		try {
 			this.description = AlgorithmUtility.getText(name);
@@ -66,17 +68,22 @@ public class ResultBean {
 		}
 		
 		
-		//System.out.println(description);
-		this.description = this.description.replaceAll("�|�|�","a");
-		this.description = this.description.replaceAll("�|�|�|�","e");
-		this.description = this.description.replaceAll("�|�","i");
-		this.description = this.description.replaceAll("�|�","o");
-		this.description = this.description.replaceAll("�|�","u");
+ 
+		this.description = this.description.replaceAll("à|â","a");
+		this.description = this.description.replaceAll("é|è|ê|ë","e");
+		this.description = this.description.replaceAll("î|ï","i");
+		this.description = this.description.replaceAll("ô|ö","o");
+		this.description = this.description.replaceAll("û|ü","u");
 
 		return description;
 		
 	}
 	
+	public int hotelPrice(ArrayList<Hotel> hotels, int index){
+		if(hotels.size()>index)return hotels.get(index).getPrice();
+		
+		return 0;
+	}
 	
 	public int getBudget() {
 		return budget;

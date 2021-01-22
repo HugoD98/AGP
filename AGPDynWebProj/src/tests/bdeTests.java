@@ -15,7 +15,6 @@ import org.junit.Test;
 
 public class bdeTests {
 
-	@Test
 	public void testAddText() throws Exception {
 		
 		Setup.specifiyTextualLocation("TouristicSite", "name", "src/RTest");
@@ -32,7 +31,6 @@ public class bdeTests {
 		
 	}
 	
-	@Test
 	public void testTextRequest() throws Exception {
 		
 		TextRequest txt = new TextRequest();
@@ -52,7 +50,6 @@ public class bdeTests {
 		}
 	}
 	
-	@Test
 	public void testSQlRequest() throws Exception {
 		/*
 		SQLRequest sql = new SQLRequest();
@@ -85,24 +82,13 @@ public class bdeTests {
 		
 		Request req = new Request();
 		
-		req.init("SELECT * from TouristicSite with nautique");
+		req.init("SELECT name from TouristicSite");
 		
 		while(req.next()) {
 			
 			String name = req.getString("name");
-			assertEquals("jetSki", name);
-		}
-		
-		req.init("SELECT * from TouristicSite with pyramide");
-		
-		while(req.next()) {
 			
-			String name = req.getString("name");
-			assertEquals("pyramide", name);
 		}
 		
-		req.init("SELECT * from TouristicSite with loisir");
-		
-		assertEquals(false, req.next());
 	}
 }

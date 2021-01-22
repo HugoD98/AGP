@@ -27,7 +27,7 @@ public class TextRequest {
 		
 		Directory index = FSDirectory.open(Paths.get(BdeEntry.indexLocation));
 		
-		//System.out.println(index);
+ 
 		IndexWriterConfig config = new IndexWriterConfig(analyseur);
 		
 	    IndexWriter w = new IndexWriter(index, config);
@@ -37,13 +37,13 @@ public class TextRequest {
 	    
 	    File repertoire = new File(BdeEntry.fileLocation);
 	    
-	    //System.out.println(repertoire.getName());
+ 
 
         String list[] = repertoire.list();      
         
         if (list != null) {         
             for(String s : list) {
-            	//System.out.println(s);
+ 
             	File f = new File(BdeEntry.fileLocation+"/"+s);
            		Document doc = new Document();
            		doc.add(new Field("name", f.getName(), TextField.TYPE_STORED));
@@ -63,7 +63,7 @@ public class TextRequest {
 		
 		Directory index = FSDirectory.open(Paths.get(BdeEntry.indexLocation));
 		
-		//System.out.println(index);
+ 
 		
 		DirectoryReader ireader = DirectoryReader.open(index);
 	    IndexSearcher searcher = new IndexSearcher(ireader); 
@@ -75,7 +75,7 @@ public class TextRequest {
 
 	    TopDocs results = searcher.search(req, MAX_RESULTS);
 	    
-	    //System.out.println(results.totalHits + " documents correspondent");
+ 
 	    for(int i=0; i<results.scoreDocs.length; i++) {
 	    	int docId = results.scoreDocs[i].doc;
 	    	Document d = searcher.doc(docId);
@@ -85,7 +85,7 @@ public class TextRequest {
 	    	}
 	    		
 	    	
-	    	//System.out.println(d.get("name") + ": score " + results.scoreDocs[i].score);
+ 
 	    }
 	        
 	    ireader.close();
