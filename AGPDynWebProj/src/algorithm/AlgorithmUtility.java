@@ -1,17 +1,9 @@
 package algorithm;
 
-import static org.junit.Assert.assertEquals;
-
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
-
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.TextField;
 
 import bde.BdeEntry;
 import bde.Request;
@@ -86,13 +78,41 @@ public class AlgorithmUtility {
 		
 	}
 	
-	public static ArrayList<TouristicSite> getSites(String filter) throws Exception{
+	public static ArrayList<TouristicSite> getSites(ArrayList<TouristicSite> ts) throws Exception{
 		
 		ArrayList<TouristicSite> sites = new ArrayList<>();
 		
 		Request req = new Request();
 		
-		req.init("SELECT * from TouristicSite with "+filter);
+		req.init("SELECT * from TouristicSite");
+		
+		while(req.next()) {
+			
+			String name = req.getString("name");
+			String type = req.getString("type");
+			int price = req.getInt("price");
+			int visitDuration = req.getInt("visitDuration");
+			int x = req.getInt("x");
+			int y = req.getInt("y");
+			
+			TouristicSite s = new TouristicSite(name, type, price, visitDuration, x, y);
+			
+			if(!ts.contains(s))
+				sites.add(s);
+		}
+		
+		return sites;
+	}
+	
+	public static ArrayList<TouristicSite> getSites(String filter) throws Exception{
+		
+		ArrayList<TouristicSite> sites = new ArrayList<>();
+		
+		Request req = new Request();
+		if(filter.length()> 2)
+			req.init("SELECT * from TouristicSite with "+filter);
+		else
+			req.init("SELECT * from TouristicSite");
 		
 		while(req.next()) {
 			

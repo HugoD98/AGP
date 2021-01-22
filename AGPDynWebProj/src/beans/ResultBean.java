@@ -20,8 +20,6 @@ import environment.Transport;
 import organisation.Excursion;
 import organisation.Stay;
 
-
-
 @ManagedBean
 @RequestScoped
 public class ResultBean {
@@ -69,11 +67,11 @@ public class ResultBean {
 		
 		
 		System.out.println(description);
-		this.description = this.description.replaceAll("à|â|ä","a");
-		this.description = this.description.replaceAll("é|è|ê|ë","e");
-		this.description = this.description.replaceAll("î|ï","i");
-		this.description = this.description.replaceAll("ö|ô","o");
-		this.description = this.description.replaceAll("ü|û","u");
+		this.description = this.description.replaceAll("ï¿½|ï¿½|ï¿½","a");
+		this.description = this.description.replaceAll("ï¿½|ï¿½|ï¿½|ï¿½","e");
+		this.description = this.description.replaceAll("ï¿½|ï¿½","i");
+		this.description = this.description.replaceAll("ï¿½|ï¿½","o");
+		this.description = this.description.replaceAll("ï¿½|ï¿½","u");
 
 		return description;
 		

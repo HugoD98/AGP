@@ -20,6 +20,7 @@ public class Algorithm {
 	private int[] program;
 	private ArrayList<Excursion> excursions;
 	private ArrayList<TouristicSite> sites;
+	private ArrayList<TouristicSite> siteNonChoisi;
 	private ArrayList<Hotel> hotelsList;
 	private ArrayList<Hotel> hotels;
 	
@@ -34,10 +35,12 @@ public class Algorithm {
 	
 	public void init() throws Exception {
 		
+		//System.out.println("debut requete");
 		this.budget = this.initBudget;
 		program = new int[this.duration];
 		excursions = new ArrayList<>();
 		sites = AlgorithmUtility.getSites(filter);
+		siteNonChoisi = AlgorithmUtility.getSites(sites);
 		hotelsList = AlgorithmUtility.getHotels();
 		hotels = new ArrayList<>();
 	}
@@ -50,7 +53,7 @@ public class Algorithm {
 			
 			init();
 			fillProgram();
-			System.out.println("Program filled");
+			//System.out.println("Program filled");
 			fill();
 			Stay s = new Stay(duration, excursions, hotels);
 			stays.add(s);
@@ -131,30 +134,30 @@ public class Algorithm {
 	
 	public void fill() {
 		
-		System.out.println(sites.size());
+		//System.out.println(sites.size());
 		
 		for(int day=0; day<duration; day++) {
 			
-			System.out.println("Budget global : "+ budget);
+			//System.out.println("Budget global : "+ budget);
 			
-			System.out.println("Nb exc du jour : "+ program[day]);
+			//System.out.println("Nb exc du jour : "+ program[day]);
 			
 			dailyBudget = budget / (duration-day);
 			
-			System.out.println("Budget du jour : "+ dailyBudget);
+			//System.out.println("Budget du jour : "+ dailyBudget);
 			
 			int hotelBudget;
 			if(day < duration-1) {
 				
 				hotelBudget = (int)(dailyBudget/3);
 				
-				System.out.println("Budget hotel : "+ hotelBudget);
+				//System.out.println("Budget hotel : "+ hotelBudget);
 				
-				System.out.println("Debut hotel jour "+day);
+				//System.out.println("Debut hotel jour "+day);
 				
 				addHotel(hotelBudget);
 				
-				System.out.println("hotel jour "+day+" termine");
+				//System.out.println("hotel jour "+day+" termine");
 			} else {
 				
 				hotelBudget = 0;
@@ -162,19 +165,19 @@ public class Algorithm {
 				
 			int excBudget = dailyBudget - hotelBudget;
 			
-			System.out.println("budget excursions : "+excBudget);
+			//System.out.println("budget excursions : "+excBudget);
 			
 			for(int i=0; i<program[day]; i++) {
 				
 				int budgetExc = (int)(excBudget/(program[day]-i));
 				
-				System.out.println("budget excursion : "+budgetExc);
+				//System.out.println("budget excursion : "+budgetExc);
 				
-				System.out.println("Debut excursion "+i);
+				//System.out.println("Debut excursion "+i);
 				
 				Excursion excursion = createExcursion(budgetExc, 100);
 				
-				System.out.println("excursion "+i+" terminee");
+				//System.out.println("excursion "+i+" terminee");
 				
 				addExcursion(excursion);
 				
@@ -184,7 +187,7 @@ public class Algorithm {
 				}	
 			}
 			
-			System.out.println("Jour "+day+" termine");			
+			//System.out.println("Jour "+day+" termine");			
 		}
 	}
 	
@@ -203,12 +206,14 @@ public class Algorithm {
 	
 	public Excursion createExcursion(int budget, int duration) {
 		
-		
-		System.out.println("nb de sites dispo : "+sites.size());
+		//System.out.println("nb de sites dispo : "+sites.size());
 		
 		Excursion excursion = new Excursion();
-		
-		TouristicSite site = AlgorithmUtility.getRandomSite(sites);
+		TouristicSite site;
+		if(sites.size()>0)
+			site = AlgorithmUtility.getRandomSite(sites);
+		else
+			site = AlgorithmUtility.getRandomSite(siteNonChoisi);
 		
 		excursion.addSite(site);
 		sites.remove(site);
@@ -221,16 +226,19 @@ public class Algorithm {
 		
 		while(excursion.getDuration()<=duration  && excursion.getPrice()<=budget) {
 			
-			System.out.println("sites restant : "+sites.size());
+			//System.out.println("sites restant : "+sites.size());
 			
 			TouristicSite lastSite = excursion.getLastSite();
 			
-			site = AlgorithmUtility.getCloserSite(lastSite, sites);
+			if(sites.size()>0)
+				site = AlgorithmUtility.getCloserSite(lastSite, sites);
+			else
+				site = AlgorithmUtility.getCloserSite(lastSite, siteNonChoisi);
 			
 			excursion.addSite(site);
 			sites.remove(site);
 			
-			System.out.println("price : "+excursion.getPrice());
+			//System.out.println("price : "+excursion.getPrice());
 			
 			Transport t2 = AlgorithmUtility.getBestTransport(AlgorithmUtility.getDistance(lastSite, site));
 		
@@ -241,7 +249,7 @@ public class Algorithm {
 		
 		excursion.actualizeComfort();
 		
-		System.out.println("Excursion creee");
+		//System.out.println("Excursion creee");
 		
 		return excursion;
 	}
@@ -250,115 +258,77 @@ public class Algorithm {
 		return budget;
 	}
 
-
-
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
-
-
 
 	public int getDailyBudget() {
 		return dailyBudget;
 	}
 
-
-
 	public void setDailyBudget(int dailyBudget) {
 		this.dailyBudget = dailyBudget;
 	}
-
-
 
 	public int getRythm() {
 		return rythm;
 	}
 
-
-
 	public void setRythm(int rythm) {
 		this.rythm = rythm;
 	}
-
-
 
 	public int getDuration() {
 		return duration;
 	}
 
-
-
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
-
 
 	public int getComfort() {
 		return comfort;
 	}
 
-
-
 	public void setComfort(int comfort) {
 		this.comfort = comfort;
 	}
-
-
 
 	public int[] getProgram() {
 		return program;
 	}
 
-
-
 	public void setProgram(int[] program) {
 		this.program = program;
 	}
-
-
 
 	public ArrayList<Excursion> getExcursions() {
 		return excursions;
 	}
 
-
-
 	public void setExcursions(ArrayList<Excursion> excursions) {
 		this.excursions = excursions;
 	}
-
-
 
 	public ArrayList<TouristicSite> getSites() {
 		return sites;
 	}
 
-
-
 	public void setSites(ArrayList<TouristicSite> sites) {
 		this.sites = sites;
 	}
-
-
 
 	public ArrayList<Hotel> getHotelsList() {
 		return hotelsList;
 	}
 
-
-
 	public void setHotelsList(ArrayList<Hotel> hotelsList) {
 		this.hotelsList = hotelsList;
 	}
 
-
-
 	public ArrayList<Hotel> getHotels() {
 		return hotels;
 	}
-
-
 
 	public void setHotels(ArrayList<Hotel> hotels) {
 		this.hotels = hotels;
