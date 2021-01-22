@@ -17,13 +17,13 @@ import organisation.Stay;
 @SessionScoped
 public class EntryBean {
 
-	private int budget = 1000; // budget per person for one week (500-8000) 
-	private int duration = 3; // duration in week (1-4)
+	private int budget = 700; // budget per person for one week (500-8000) 
+	private int duration = 4; // duration in week (1-4)
 	private int comfort = 5; // in stars (1-5)
 	private int activityIntensity = 2; // number of activity (1-3)
 	private int numberOfPerson = 4; // number of person for calculate the bill 
 
-	private String critereArea = "nager peintres panoramique plongee cyclisme volcanique nature Quad mer jet ski danse falaise";
+	private String critereArea = "nager peintres panoramique plongee cyclisme volcanique nature quad mer jet ski danse falaise";
 	private boolean hotelChange=false;
 	
 	private String research ="";
@@ -34,7 +34,7 @@ public class EntryBean {
 
 		Algorithm algo = new Algorithm(critereArea, duration,comfort, budget , activityIntensity);
 
-		System.out.println("algo cree");
+		//System.out.println("algo cree");
 		
 		try {
 			algo.launch(3);
@@ -49,7 +49,7 @@ public class EntryBean {
 	public String startResearch() {		
 		if(this.research == "")return "index";
 		
-		System.out.println(research);
+		//System.out.println(research);
 
 		try {
 			touristicSiteList  = AlgorithmUtility.getSites(research);
@@ -63,7 +63,7 @@ public class EntryBean {
 	}
 	
 	public EntryBean() {
-		System.out.println("main pouette");
+		//System.out.println("main pouette");
 	}
 
 	public int getBudget() {

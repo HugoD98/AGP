@@ -37,7 +37,7 @@ public class TextRequest {
 	    
 	    File repertoire = new File(BdeEntry.fileLocation);
 	    
-	    System.out.println(repertoire.getName());
+	    //System.out.println(repertoire.getName());
 
         String list[] = repertoire.list();      
         
